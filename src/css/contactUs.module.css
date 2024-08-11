@@ -104,6 +104,13 @@
     left: 2rem;
 }
 
+.socials img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .backgrounImg {
     position: absolute;
     bottom: 0;
@@ -234,7 +241,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 90%;
+    width: 99%;
     gap: 1rem;
     font-size: 1rem;
 }

@@ -2,14 +2,18 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from '../css/header.module.css';
 import video from '../assets/video.mp4';
-// import headerBanner from '../assets/headerBanner.png';
 import blogBanner from '../images/Blog-banner.png';
 import portfolioBanner from '../images/portfolio-banner.png';
 import servicesBanner from '../images/Services-Banner.png';
 import aboutusBanner from '../images/footerSlider2.jpg';
+import { blogs } from '../data/blogs'; // Import blogs data
 
 function Header({ openModal }) {
     const location = useLocation();
+
+    // Extract the blog ID from the URL if on the blog page
+    const blogId = location.pathname.startsWith('/blog/') ? parseInt(location.pathname.split('/')[2], 10) : null;
+    const selectedBlog = blogs.find(blog => blog.id === blogId);
 
     const pageContent = {
         '/': {
@@ -23,7 +27,7 @@ function Header({ openModal }) {
             type: 'image',
             src: blogBanner,
             alt: 'Blog Banner',
-            title: '12/22/2024 min read',
+            title: selectedBlog ? `${selectedBlog.title} - ${selectedBlog.date}` : '12/22/2024 min read',
             showButton: false,
             additionalStyles: {
                 justifyContent: 'flex-end',
@@ -52,7 +56,7 @@ function Header({ openModal }) {
         },
     };
 
-    const currentPage = pageContent[location.pathname] || pageContent['/'];
+    const currentPage = pageContent[location.pathname] || pageContent['/blog'];
 
     return (
         <header className={styles.header}>

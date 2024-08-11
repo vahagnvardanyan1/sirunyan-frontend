@@ -12,6 +12,7 @@ import twitter from '../assets/twitter.png';
 import ring from '../assets/ring.png';
 import letterSend from '../assets/letter_send 1.png';
 import closeBtn from '../assets/closeBtn.svg';
+import linkedIn from "../assets/linkedIn.jpg";
 
 function ContactUsModal({ isOpen, onClose }) {
     const [formData, setFormData] = useState({
@@ -109,9 +110,9 @@ function ContactUsModal({ isOpen, onClose }) {
                         </div>
                     </div>
                     <div className={styles.socials}>
-                        <img src={twitter} alt="Twitter" />
-                        <img src={instagram} alt="Instagram" />
-                        <img src={discord} alt="Discord" />
+                        <a target="_blank" href={'https://www.linkedin.com/in/tatev-sirunyan/'}>
+                            <img src={linkedIn} alt="LinkedIn" />
+                        </a>
                     </div>
                     <img src={ring} alt="Background" className={styles.backgrounImg} />
                 </div>

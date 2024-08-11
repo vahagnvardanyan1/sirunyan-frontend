@@ -65,6 +65,12 @@ import sculptImg7 from '../images/portfolio/Sculpting/7.jpg';
 import sculptImg8 from '../images/portfolio/Sculpting/8.png';
 import {Grid, Navigation} from "swiper/modules";
 
+// Animations
+import animation1 from '../images/portfolio/Videos/1.mp4';
+import animation2 from '../images/portfolio/Videos/2.mp4';
+import animation3 from '../images/portfolio/Videos/3.mp4';
+
+
 SwiperCore.use([Grid, Navigation]);
 
 function Portfolio() {
@@ -73,9 +79,9 @@ function Portfolio() {
 
     const [selectedCategory, setSelectedCategory] = useState(initialCategory);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedMedia, setSelectedMedia] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [loadedImages, setLoadedImages] = useState(0);
+    const [loadedMedia, setLoadedMedia] = useState(0);
 
     const categories = ['Sketching', '3D modeling', 'Sculpting', 'Rendering', 'Rendering & more for websites and smm', 'Animations'];
 
@@ -91,40 +97,48 @@ function Portfolio() {
             renderImg1, renderImg2, renderImg3, renderImg4, renderImg5, renderImg6, renderImg7, renderImg8, renderImg9, renderImg10, renderIm11, renderImg12, renderImg13, renderImg14, renderImg15, renderImg16, renderImg17, renderImg18, renderImg19, renderImg20, renderImg21, renderImg22, renderImg23, renderImg24,
         ],
         'Rendering & more for websites and smm': [renderImg20, renderImg21, renderImg22, renderImg23, renderImg24, ],
-        'Animations': [portfolioImg1, portfolioImg2, portfolioImg3],
+        'Animations': [
+            animation1,
+            animation2,
+            animation3,],
     };
-
     useEffect(() => {
-        const totalImages = imagesByCategory[selectedCategory].length;
-        if (loadedImages === totalImages) {
+        const totalMedia = imagesByCategory[selectedCategory].length;
+        if (loadedMedia === totalMedia) {
             setLoading(false);
         }
-    }, [loadedImages, selectedCategory, imagesByCategory]);
-    const handleImageLoad = () => {
-        setLoadedImages((prev) => prev + 1);
+    }, [loadedMedia, selectedCategory, imagesByCategory]);
+
+    const handleMediaLoad = () => {
+        setLoadedMedia((prev) => prev + 1);
     };
 
     const handleCategoryClick = (category) => {
         setSelectedCategory(category);
         setLoading(true);
-        setLoadedImages(0);
+        setLoadedMedia(0);
     };
 
     const handleSelectChange = (event) => {
         setSelectedCategory(event.target.value);
         setLoading(true);
-        setLoadedImages(0);
+        setLoadedMedia(0);
     };
 
-    const openModal = (image) => {
-        setSelectedImage(image);
+    const openModal = (media) => {
+        setSelectedMedia(media);
         setIsModalOpen(true);
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
-        setSelectedImage(null);
+        setSelectedMedia(null);
     };
+
+    const isVideo = (media) => {
+        return media.endsWith('.mp4');
+    };
+
     return (
         <div className={styles.portfolio}>
             {loading && (
@@ -149,12 +163,12 @@ function Portfolio() {
                         </option>
                     ))}
                 </select>
-                <img src={arrowDown} alt="" className={styles.arrowDown}/>
+                <img src={arrowDown} alt="" className={styles.arrowDown} />
             </div>
 
             <div className={styles.categoriesTitle}>
                 <p>{selectedCategory}</p>
-                <hr className={styles.portfolioSectionDivider}/>
+                <hr className={styles.portfolioSectionDivider} />
             </div>
 
             <Swiper
@@ -184,11 +198,28 @@ function Portfolio() {
                 }}
                 className={styles.categoriesContainer}
             >
-                {imagesByCategory[selectedCategory].map((img, index) => (
-                    <SwiperSlide key={index} className={styles.slideBlock} onClick={() => openModal(img)}>
-                        <img src={img} alt={`Portfolio ${index + 1}`} className={styles.portfolioImage} onLoad={handleImageLoad} />
+                {imagesByCategory[selectedCategory].map((media, index) => (
+                    <SwiperSlide key={index} className={styles.slideBlock} onClick={() => openModal(media)}>
+                        {isVideo(media) ? (
+                            <video
+                                src={media}
+                                className={styles.portfolioImage}
+                                autoPlay
+                                muted
+                                loop
+                                onLoadedData={handleMediaLoad}
+                                controls={false}
+                            />
+                        ) : (
+                            <img
+                                src={media}
+                                alt={`Portfolio ${index + 1}`}
+                                className={styles.portfolioImage}
+                                onLoad={handleMediaLoad}
+                            />
+                        )}
                         <div className={styles.hoverEffect}>
-                            <button className={styles.seeButton}><img src={seePhoto} alt=""/></button>
+                            <button className={styles.seeButton}><img src={seePhoto} alt="See More" /></button>
                         </div>
                     </SwiperSlide>
                 ))}
@@ -203,7 +234,11 @@ function Portfolio() {
             {isModalOpen && (
                 <div className={styles.modalOverlay} onClick={closeModal}>
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <img src={selectedImage} alt="Zoomed" className={styles.zoomedImage}/>
+                        {isVideo(selectedMedia) ? (
+                            <video src={selectedMedia} className={styles.zoomedImage} autoPlay loop muted controls={false} />
+                        ) : (
+                            <img src={selectedMedia} alt="Zoomed" className={styles.zoomedImage} />
+                        )}
                         <button className={styles.closeButton} onClick={closeModal}>×</button>
                     </div>
                 </div>

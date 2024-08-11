@@ -50,8 +50,13 @@ function Navbar({ isModalOpen, openModal }) {
             if (blogSection) {
                 blogSection.scrollIntoView({ behavior: 'smooth' });
             }
-        }, 100); // Delay to ensure navigation completes
+        }, 100);
     };
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
 
     return (
         <div className={`${styles.navContainer} ${isModalOpen ? styles.hidden : ''}`}>
@@ -69,19 +74,29 @@ function Navbar({ isModalOpen, openModal }) {
                         </li>
                     </ul>
                     <div className={styles.navbarCurve}>
-                        <NavLink to="/" onClick={closeMenu}>
-                            <img src={logo} alt="logo" className={styles.logo} />
+                        <NavLink to="/" onClick={() => {
+                            closeMenu();
+                            scrollToTop();
+                        }}>
+                            <img src={logo} alt="logo" className={styles.logo}/>
                         </NavLink>
                     </div>
+
                     <ul className={styles.navList}>
                         <li className={location.pathname === '/about' ? styles.active : ''}>
                             <NavLink to="/about" onClick={closeMenu}>About Us</NavLink>
                         </li>
                         <li className={location.pathname === '/blog' ? styles.active : ''}>
-                            <a onClick={() => { closeMenu(); scrollToBlogSection(); }}>Blog</a>
+                            <a onClick={() => {
+                                closeMenu();
+                                scrollToBlogSection();
+                            }}>Blog</a>
                         </li>
                         <li className={location.pathname === '/contact' ? styles.active : ''}>
-                            <a onClick={() => { handleOpenModal(); closeMenu(); }}>Contact Us</a>
+                            <a onClick={() => {
+                                handleOpenModal();
+                                closeMenu();
+                            }}>Contact Us</a>
                         </li>
                     </ul>
                     <img

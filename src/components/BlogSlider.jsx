@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../css/blogSlider.module.css';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
@@ -32,7 +33,7 @@ const BlogSlider = ({ blogs }) => {
                     <img src={blog.image} alt={blog.title} />
                     <h3>{blog.title}</h3>
                     <p>{blog.text}</p>
-                    <a href={blog.link} className={styles.readMore}>Read More</a>
+                    <Link to={`/blog/${blog.id}`} className={styles.readMore}>Read More</Link>
                 </div>
             ))}
         </Slider>

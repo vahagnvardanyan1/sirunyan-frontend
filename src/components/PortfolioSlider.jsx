@@ -12,13 +12,17 @@ import ring5 from '../images/ring5.png';
 import {EffectCoverflow} from "swiper/modules";
 
 const PortfolioSlider = () => {
+
     const slides = [
-        { image: ring1, title: "From Idea to Visualisation" },
-        { image: ring2, title: "From Idea to Visualisation" },
+        { image: ring1, title: "From Idea to Visualisation", className: 'smaller' },
+        { image: ring2, title: "From Idea to Visualisation", className: 'onTop' },
+        { image: ring5, title: "From Idea to Visualisation" },
         { image: ring3, title: "From Idea to Visualisation" },
         { image: ring4, title: "From Idea to Visualisation" },
-        { image: ring5, title: "From Idea to Visualisation" },
+
     ];
+
+
 
     return (
         <div className={styles.parentContainer}>
@@ -63,7 +67,7 @@ const PortfolioSlider = () => {
                         <button className={`swiper-button-next-footer ${styles.sliderBtn}`}>→</button>
                     </div>
                     {slides.map((slide, index) => (
-                        <SwiperSlide key={index} className={styles.slide}>
+                        <SwiperSlide key={index} className={`${styles.slide} ${slide.className ? styles[slide.className] : ''}`}>
                             <div
                                 className={styles.slideBackground}
                                 style={{
@@ -72,7 +76,7 @@ const PortfolioSlider = () => {
                             >
                                 <img
                                     src={slide.image}
-                                    className={styles.slideImage}
+                                    className={`${styles.slideImage} ${slide.className ? styles[slide.className] : ''}`}
                                     alt={`Slide ${index + 1}`}
                                 />
                             </div>

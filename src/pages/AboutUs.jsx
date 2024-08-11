@@ -16,7 +16,6 @@ import footerSlider1 from '../images/footerSlider1.jpg';
 import footerSlider2 from '../images/footerSlider2.jpg';
 import footerSlider3 from '../images/footerSlider3.jpg';
 import footerSlider4 from '../images/footerSlider4.jpg';
-import footerSlider5 from '../images/footerSlider5.jpg';
 import footerSlider6 from '../images/footerSlider6.jpg';
 import footerSlider7 from '../images/footerSlider7.jpg';
 import { Navigation, Pagination } from "swiper/modules";
@@ -37,7 +36,6 @@ function AboutUs() {
         { image: footerSlider2 },
         { image: footerSlider3 },
         { image: footerSlider4 },
-        { image: footerSlider5 },
         { image: footerSlider6 },
         { image: footerSlider7 },
     ];

@@ -13,37 +13,44 @@ import serviceBg4 from '../images/serviceBg4.png';
 import serviceBg5 from '../images/servicesBg5.png';
 import serviceBg6 from '../images/serviceBg6.png';
 
-// content for blog Slider
 const blogs = [
     {
+        id: 1,
         image: img1,
         title: 'Stylish Historical Facts About Cartier Style (Part 1)',
         text: 'Behind every legendary thing stand great people...',
-        link: '/blog'
+        content: 'Full content of blog 1 here...',
+        link: '/blog/1'
     },
     {
+        id: 2,
         image: img2,
         title: 'Art Nouveau at the 1900 Paris Exposition',
         text: 'In 1900, the world witnessed a grand display of Art...',
-        link: '#'
+        content: 'Full content of blog 2 here...',
+        link: '/blog/2'
     },
     {
+        id: 3,
         image: img3,
         title: 'Stylish Historical Facts About Cartier Style (Part 2)',
         text: 'Behind anything legendary stand great people...',
-        link: '#'
+        content: 'Full content of blog 3 here...',
+        link: '/blog/3'
     }
 ];
 
-// Content for Service blocks
+
 const services = [
-    { title: 'Sketching', img: serviceBg1 },
-    { title: '3D Modeling', img: serviceBg2 },
-    { title: 'Sculpting', img: serviceBg3 },
-    { title: 'Rendering', img: serviceBg4 },
+    { title: 'Sketching', img: serviceBg1, className: 'lowered' },
+    { title: '3D modeling', img: serviceBg2, className: 'lowered' },
+    { title: 'Sculpting', img: serviceBg3, className: 'bigger' },
+    { title: 'Rendering', img: serviceBg4, className: 'lowered' },
     { title: 'Rendering & more for Websites and Smm', img: serviceBg5 },
     { title: 'Animations', img: serviceBg6 },
 ];
+
+
 
 function Home() {
     return (
@@ -56,13 +63,17 @@ function Home() {
                 <div className={styles.servicesContainer}>
                     {services.map((service, index) => (
                         <div className={styles.serviceCategories} key={index}>
-                            <NavLink to="/portfolio" state={{ category: service.title }}>
+                            <NavLink to="/portfolio" state={{category: service.title}}>
                                 <div className={styles.imageContainer}>
-                                    <img src={service.img} alt={service.title} />
+                                    <img
+                                        src={service.img}
+                                        alt={service.title}
+                                        className={`${service.className ? styles[service.className] : ''}`}
+                                    />
                                 </div>
                                 <div className={styles.serviceOverlay}>
                                     <div className={styles.serviceTitle}>{service.title}</div>
-                                    <hr className={styles.servicesHomeSectionDivider} />
+                                    <hr className={styles.servicesHomeSectionDivider}/>
                                 </div>
                                 <div className={styles.indicator}></div>
                             </NavLink>
@@ -73,14 +84,14 @@ function Home() {
             <section id={styles.portfolio}>
                 <div className={styles.servicesContent}>
                     <p>Portfolio</p>
-                    <hr className={styles.homeSectionDivider} />
+                    <hr className={styles.homeSectionDivider}/>
                 </div>
-                <PortfolioSlider />
+                <PortfolioSlider/>
             </section>
             <section id={styles.aboutUs}>
                 <div className={styles.servicesContent}>
                     <p>About Us</p>
-                    <hr className={styles.homeSectionDivider} />
+                    <hr className={styles.homeSectionDivider}/>
                 </div>
                 <div className={styles.aboutSubtitle}>
                     <p className={styles.firstSubtitle}>Hi, so good to see you here!</p>

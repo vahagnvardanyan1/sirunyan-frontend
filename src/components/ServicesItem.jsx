@@ -11,7 +11,7 @@ function ServicesItem({ image, title, description, isReversed, onClick }) {
                     <hr className={`${styles.serviceSectionDivider} ${isReversed ? styles.right : styles.left}`} />
                 </div>
             </div>
-            <div className={styles['text-container']}>
+            <div className={`${styles['text-container']} ${isReversed ? styles['text-right'] : styles['text-left']}`}>
                 <div className={styles.text}>
                     <p>{description}</p>
                 </div>
