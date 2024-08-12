@@ -6,9 +6,6 @@ import 'swiper/css/grid';
 import 'swiper/css/navigation';
 import SwiperCore from 'swiper';
 import styles from '../css/portfolio.module.css';
-import portfolioImg1 from '../images/portfolioImg1.png';
-import portfolioImg2 from '../images/portfolioImg2.png';
-import portfolioImg3 from '../images/portfolioImg3.png';
 import seePhoto from '../assets/seeAt.png';
 import arrowDown from '../assets/select-down.svg';
 
@@ -25,34 +22,25 @@ import modelingImg9 from '../images/portfolio/Modeling/9.jpg';
 import modelingImg10 from '../images/portfolio/Modeling/10.jpg';
 import modelingImg11 from '../images/portfolio/Modeling/11.jpg';
 import modelingImg12 from '../images/portfolio/Modeling/12.jpg';
+import modelingImg13 from '../images/portfolio/Modeling/13.jpg';
 import modelingImg14 from '../images/portfolio/Modeling/14.jpg';
 import modelingImg15 from '../images/portfolio/Modeling/15.jpg';
 
 // Renderings
-import renderImg1 from '../images/portfolio/Renderings/JPG/1.jpg';
-import renderImg2 from '../images/portfolio/Renderings/JPG/2.jpg';
-import renderImg3 from '../images/portfolio/Renderings/JPG/3..jpg';
-import renderImg4 from '../images/portfolio/Renderings/JPG/4.jpg';
-import renderImg5 from '../images/portfolio/Renderings/JPG/5.jpg';
-import renderImg6 from '../images/portfolio/Renderings/JPG/6..jpg';
-import renderImg7 from '../images/portfolio/Renderings/JPG/7.jpg';
-import renderImg8 from '../images/portfolio/Renderings/JPG/8.jpg';
-import renderImg9 from '../images/portfolio/Renderings/JPG/9.jpg';
-import renderImg10 from '../images/portfolio/Renderings/JPG/10.jpg';
-import renderIm11 from '../images/portfolio/Renderings/JPG/11.jpg';
-import renderImg12 from '../images/portfolio/Renderings/JPG/12.jpg';
-import renderImg13 from '../images/portfolio/Renderings/JPG/13.jpg';
-import renderImg14 from '../images/portfolio/Renderings/JPG/14.jpg';
-import renderImg15 from '../images/portfolio/Renderings/JPG/15.jpg';
-import renderImg16 from '../images/portfolio/Renderings/JPG/16.jpg';
-import renderImg17 from '../images/portfolio/Renderings/JPG/17.jpg';
-import renderImg18 from '../images/portfolio/Renderings/JPG/18.jpg';
-import renderImg19 from '../images/portfolio/Renderings/JPG/19.jpg';
-import renderImg20 from '../images/portfolio/Renderings/Scenes/20.jpg';
-import renderImg21 from '../images/portfolio/Renderings/Scenes/21.jpg';
-import renderImg22 from '../images/portfolio/Renderings/Scenes/22.jpg';
-import renderImg23 from '../images/portfolio/Renderings/Scenes/23.jpg';
-import renderImg24 from '../images/portfolio/Renderings/Scenes/24.jpg';
+import renderImg1 from '../images/portfolio/Renderings/1.jpg';
+import renderImg2 from '../images/portfolio/Renderings/2.jpg';
+import renderImg3 from '../images/portfolio/Renderings/3.jpg';
+import renderImg4 from '../images/portfolio/Renderings/4.jpg';
+import renderImg6 from '../images/portfolio/Renderings/6.jpg';
+import renderImg7 from '../images/portfolio/Renderings/7.jpg';
+import renderImg8 from '../images/portfolio/Renderings/8.jpg';
+import renderImg9 from '../images/portfolio/Renderings/9.jpg';
+import renderImg10 from '../images/portfolio/Renderings/10.jpg';
+import renderIm11 from '../images/portfolio/Renderings/11.jpg';
+import renderImg12 from '../images/portfolio/Renderings/12.jpg';
+import renderImg13 from '../images/portfolio/Renderings/13.jpg';
+import renderImg14 from '../images/portfolio/Renderings/14.jpg';
+import renderImg15 from '../images/portfolio/Renderings/15.jpg';
 
 // Sculptings
 import sculptImg1 from '../images/portfolio/Sculpting/1.jpg';
@@ -62,13 +50,34 @@ import sculptImg4 from '../images/portfolio/Sculpting/4.jpg';
 import sculptImg5 from '../images/portfolio/Sculpting/5.jpg';
 import sculptImg6 from '../images/portfolio/Sculpting/6.jpg';
 import sculptImg7 from '../images/portfolio/Sculpting/7.jpg';
-import sculptImg8 from '../images/portfolio/Sculpting/8.png';
+import sculptImg8 from '../images/portfolio/Sculpting/8.jpg';
+import sculptImg9 from '../images/portfolio/Sculpting/9.jpg';
 import {Grid, Navigation} from "swiper/modules";
 
 // Animations
 import animation1 from '../images/portfolio/Videos/1.mp4';
 import animation2 from '../images/portfolio/Videos/2.mp4';
 import animation3 from '../images/portfolio/Videos/3.mp4';
+
+
+// Rendering for Websites and SMM
+import smmImg1 from '../images/portfolio/Rendering for Websites and SMM/1.jpg';
+import smmImg2 from '../images/portfolio/Rendering for Websites and SMM/2.jpg';
+import smmImg3 from '../images/portfolio/Rendering for Websites and SMM/3.jpg';
+import smmImg4 from '../images/portfolio/Rendering for Websites and SMM/4.jpg';
+import smmImg5 from '../images/portfolio/Rendering for Websites and SMM/5.jpg';
+
+// Sketch
+import sketchImg1 from '../images/portfolio/Sketch/1.jpg';
+import sketchImg2 from '../images/portfolio/Sketch/2.jpg';
+import sketchImg3 from '../images/portfolio/Sketch/3.jpg';
+import sketchImg4 from '../images/portfolio/Sketch/4.jpg';
+import sketchImg6 from '../images/portfolio/Sketch/6.jpg';
+import sketchImg7 from '../images/portfolio/Sketch/7.png';
+import sketchImg9 from '../images/portfolio/Sketch/9.jpg';
+import sketchImg10 from '../images/portfolio/Sketch/10.png';
+import sketchIm11 from '../images/portfolio/Sketch/11.png';
+import sketchImg12 from '../images/portfolio/Sketch/12.jpg';
 
 
 SwiperCore.use([Grid, Navigation]);
@@ -86,17 +95,34 @@ function Portfolio() {
     const categories = ['Sketching', '3D modeling', 'Sculpting', 'Rendering', 'Rendering & more for websites and smm', 'Animations'];
 
     const imagesByCategory = {
-        'Sketching': [portfolioImg1, portfolioImg2, portfolioImg3 ],
+        'Sketching': [
+            sketchImg1,
+            sketchImg2,
+            sketchImg3,
+            sketchImg4,
+            sketchImg6,
+            sketchImg7,
+            sketchImg9,
+            sketchImg10,
+            sketchIm11,
+            sketchImg12,
+        ],
         '3D modeling': [
-            modelingImg1, modelingImg2, modelingImg3, modelingImg4, modelingImg5, modelingImg6, modelingImg7, modelingImg8, modelingImg9, modelingImg10, modelingImg11, modelingImg12, modelingImg14, modelingImg15,
+            modelingImg1, modelingImg2, modelingImg3, modelingImg4, modelingImg5, modelingImg6, modelingImg7, modelingImg8, modelingImg9, modelingImg10, modelingImg11, modelingImg12,modelingImg13, modelingImg14, modelingImg15,
         ],
         'Sculpting': [
-            sculptImg1, sculptImg2, sculptImg3, sculptImg4, sculptImg5, sculptImg6, sculptImg7, sculptImg8,
+            sculptImg1, sculptImg2, sculptImg3, sculptImg4, sculptImg5, sculptImg6, sculptImg7, sculptImg8,sculptImg9
         ],
         'Rendering': [
-            renderImg1, renderImg2, renderImg3, renderImg4, renderImg5, renderImg6, renderImg7, renderImg8, renderImg9, renderImg10, renderIm11, renderImg12, renderImg13, renderImg14, renderImg15, renderImg16, renderImg17, renderImg18, renderImg19, renderImg20, renderImg21, renderImg22, renderImg23, renderImg24,
+            renderImg1, renderImg2, renderImg3, renderImg4, renderImg6, renderImg7, renderImg8, renderImg9, renderImg10, renderIm11, renderImg12, renderImg13, renderImg14, renderImg15
         ],
-        'Rendering & more for websites and smm': [renderImg20, renderImg21, renderImg22, renderImg23, renderImg24, ],
+        'Rendering & more for websites and smm': [
+            smmImg1,
+            smmImg2,
+            smmImg3,
+            smmImg4,
+            smmImg5,
+        ],
         'Animations': [
             animation1,
             animation2,

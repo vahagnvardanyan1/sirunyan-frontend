@@ -50,17 +50,26 @@
 
 .blogContentPhotos {
     margin-top: 3rem;
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 2rem;
-    grid-template-columns: repeat(2, 1fr);
 }
 
+.blogContentPhotos img {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
 .blogContentFooter {
     margin-top: 3rem;
     text-align: center;
     line-height: 21px;
     color: #565656;
     margin-bottom: 3rem;
+
 }
 
 @media (max-width: 1200px) {

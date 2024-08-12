@@ -5,7 +5,7 @@
     justify-content: center;
     position: relative;
     width: 100%;
-    max-width: 80%;
+    max-width: 100%;
     margin: auto;
 }
 
@@ -206,14 +206,25 @@
     }
 
     .swiper-slide-active .slideBackground {
-        width: 22rem; /* Adjust width for smaller screens */
-        height: 28rem; /* Adjust height for smaller screens */
+        width: 22rem;
+        height: 28rem;
     }
 
     .controllers button {
         width: 30px;
     }
+
+    .smaller {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .slideImage.smaller {
+        width: 100%;
+        height: auto;
+    }
 }
+
 
 @media (max-width: 1200px) {
     .swiper-wrapper {
@@ -278,5 +289,9 @@
 
     .slideText {
         font-size: 1.2rem;
+    }
+    .smaller {
+        max-width: 100%;
+        height: auto;
     }
 }

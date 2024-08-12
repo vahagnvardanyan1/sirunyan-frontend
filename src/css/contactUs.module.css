@@ -81,7 +81,7 @@
     display: flex;
     flex-direction: column;
     /*align-items: center;*/
-    gap: 2rem;
+    gap: 4rem;
     flex: 1;
     justify-content: center;
 }
@@ -246,6 +246,7 @@
     font-size: 1rem;
 }
 
+
 .checkbox input {
     display: inline-block;
     width: 15px;
@@ -303,10 +304,14 @@ input[type="radio"] {
     cursor: pointer;
     font-family: "Montserrat Alternates", sans-serif;
     gap: 0.3rem;
+    flex-basis: calc(50% - 0.5rem); /* Ensures two checkboxes per row */
+    margin-bottom: 1rem;
 }
 
 .checkbox label input {
     border-radius: 30px;
+    width: 15px;
+    height: 15px;
 }
 
 /* Responsive Styles */
@@ -440,5 +445,35 @@ input[type="radio"] {
 
     .contactUs {
         margin-top: 50rem;
+    }
+
+    .socials {
+        position: static;
+        margin-top: 1rem;
+        justify-content: center;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .socials img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+    .checkbox label {
+        flex-basis: calc(33.33% - 0.5rem);
+    }
+}
+@media (max-width: 480px) {
+    .checkbox {
+        justify-content: flex-start;
+    }
+
+    .checkbox label {
+        flex-basis: 100%; /* Ensures single checkbox per row */
+        margin-bottom: 0.5rem;
     }
 }

@@ -4,21 +4,21 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-import teamMember1 from '../images/teamMember1.png';
-import teamMember2 from '../images/teamMember2.jpg';
-import teamMember3 from '../images/teamMember3.png';
-import teamMember4 from '../images/teamMember4.png';
-import teamMember5 from '../images/teamMember5.png';
-import teamMember6 from '../images/teamMember6.jpg';
-import teamMember7 from '../images/teamMember7.jpg';
-import footerSlider1 from '../images/footerSlider1.jpg';
-import footerSlider2 from '../images/footerSlider2.jpg';
-import footerSlider3 from '../images/footerSlider3.jpg';
-import footerSlider4 from '../images/footerSlider4.jpg';
-import footerSlider6 from '../images/footerSlider6.jpg';
-import footerSlider7 from '../images/footerSlider7.jpg';
 import { Navigation, Pagination } from "swiper/modules";
+
+import teamMember1 from '../images/teamMembers/teamMember1.png';
+import teamMember2 from '../images/teamMembers/teamMember2.webp';
+import teamMember3 from '../images/teamMembers/teamMember3.png';
+import teamMember4 from '../images/teamMembers/teamMember4.png';
+import teamMember5 from '../images/teamMembers/teamMember5.png';
+import teamMember6 from '../images/teamMembers/teamMember6.webp';
+import teamMember7 from '../images/teamMembers/teamMember7.webp';
+
+import footerSlider1 from '../images/teamMembers/footerSlider1.webp';
+import footerSlider2 from '../images/teamMembers/footerSlider2.webp';
+import footerSlider3 from '../images/teamMembers/footerSlider3.webp';
+import footerSlider4 from '../images/teamMembers/footerSlider4.webp';
+import footerSlider6 from '../images/teamMembers/footerSlider6.webp';
 
 function AboutUs() {
     const teamMembers = [
@@ -37,7 +37,6 @@ function AboutUs() {
         { image: footerSlider3 },
         { image: footerSlider4 },
         { image: footerSlider6 },
-        { image: footerSlider7 },
     ];
 
     return (

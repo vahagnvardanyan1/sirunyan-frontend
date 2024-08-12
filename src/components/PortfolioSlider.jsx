@@ -4,11 +4,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import styles from '../css/portfolioSlider.module.css';
-import ring1 from '../images/ring1.png';
-import ring2 from '../images/ring2.png';
-import ring3 from '../images/ring3.png';
-import ring4 from '../images/ring4.png';
-import ring5 from '../images/ring5.png';
+import ring1 from '../images/home/ring1.png';
+import ring2 from '../images/home/ring2.png';
+import ring3 from '../images/home/ring3.png';
+import ring4 from '../images/home/ring4.png';
+import ring5 from '../images/home/ring5.png';
 import {EffectCoverflow} from "swiper/modules";
 
 const PortfolioSlider = () => {
@@ -48,8 +48,16 @@ const PortfolioSlider = () => {
                     }}
                     className={styles.slider}
                     breakpoints={{
+                        375: {
+                            slidesPerView: 1,
+                            coverflowEffect: false,
+                            effect: 'slide',
+                            centeredSlides: true
+                        },
                         480: {
                             slidesPerView: 1,
+                            coverflowEffect: false,
+                            effect: 'slide',
                         },
                         768: {
                             slidesPerView: 1,

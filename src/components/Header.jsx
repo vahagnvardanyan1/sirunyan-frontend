@@ -2,16 +2,14 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from '../css/header.module.css';
 import video from '../assets/video.mp4';
-import blogBanner from '../images/Blog-banner.png';
 import portfolioBanner from '../images/portfolio-banner.png';
-import servicesBanner from '../images/Services-Banner.png';
-import aboutusBanner from '../images/footerSlider2.jpg';
-import { blogs } from '../data/blogs'; // Import blogs data
+import servicesBanner from '../images/Services/Services-Banner.png';
+import aboutusBanner from '../images/teamMembers/footerSlider2.webp';
+import { blogs } from '../data/blogs';
 
 function Header({ openModal }) {
     const location = useLocation();
 
-    // Extract the blog ID from the URL if on the blog page
     const blogId = location.pathname.startsWith('/blog/') ? parseInt(location.pathname.split('/')[2], 10) : null;
     const selectedBlog = blogs.find(blog => blog.id === blogId);
 
@@ -23,16 +21,24 @@ function Header({ openModal }) {
             title: 'The beautiful language of your imagination',
             showButton: true,
         },
-        '/blog': {
-            type: 'image',
-            src: blogBanner,
-            alt: 'Blog Banner',
-            title: selectedBlog ? `${selectedBlog.title} - ${selectedBlog.date}` : '12/22/2024 min read',
-            showButton: false,
-            additionalStyles: {
-                justifyContent: 'flex-end',
+        '/blog': selectedBlog
+            ? {
+                type: 'image',
+                src: selectedBlog.image,
+                alt: 'Blog Banner',
+                title: `${selectedBlog.title} - ${selectedBlog.date}`,
+                showButton: false,
+                additionalStyles: {
+                    justifyContent: 'flex-end',
+                },
+            }
+            : {
+                type: 'image',
+                src: portfolioBanner,
+                alt: 'Blog Banner',
+                title: 'Blog - 12/22/2024 min read',
+                showButton: false,
             },
-        },
         '/portfolio': {
             type: 'image',
             src: portfolioBanner,
@@ -61,7 +67,7 @@ function Header({ openModal }) {
     return (
         <header className={styles.header}>
             {currentPage.type === 'video' ? (
-                <video className={styles.headerVideo} autoPlay loop muted>
+                <video className={styles.headerVideo} autoPlay loop muted playsInline>
                     <source src={currentPage.src} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>

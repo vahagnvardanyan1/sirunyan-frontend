@@ -2,12 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/services.module.css';
 import ServicesItem from '../components/ServicesItem';
-import img1 from '../images/servicesImg1.jpg';
-import img2 from '../images/servicesImg2.jpg';
-import img3 from '../images/servicesImg3.jpg';
-import img4 from '../images/servicesImg4.jpg';
-import img5 from '../images/servicesImg5.jpg';
-import img6 from '../images/servicesImg6.jpg';
+import img1 from '../images/Services/servicesImg1.jpg';
+import img2 from '../images/Services/servicesImg2.jpg';
+import img3 from '../images/Services/servicesImg3.jpg';
+import img4 from '../images/Services/servicesImg4.jpg';
+import img5 from '../images/Services/servicesImg5.jpg';
+import img6 from '../images/Services/servicesImg6.jpg';
 
 const services = [
     {

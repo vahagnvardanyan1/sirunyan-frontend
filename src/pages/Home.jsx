@@ -6,12 +6,12 @@ import BlogSlider from '../components/BlogSlider';
 import img1 from '../images/blogImg1.png';
 import img2 from '../images/BlogImg2.png';
 import img3 from '../images/blogImg3.png';
-import serviceBg1 from '../images/serviceBg1.png';
-import serviceBg2 from '../images/serviceBg2.png';
-import serviceBg3 from '../images/serviceBg3.png';
-import serviceBg4 from '../images/serviceBg4.png';
-import serviceBg5 from '../images/servicesBg5.png';
-import serviceBg6 from '../images/serviceBg6.png';
+import serviceBg1 from '../images/home/serviceBg1.png';
+import serviceBg2 from '../images/home/serviceBg2.png';
+import serviceBg3 from '../images/home/serviceBg3.png';
+import serviceBg4 from '../images/home/serviceBg4.png';
+import serviceBg5 from '../images/home/servicesBg5.png';
+import serviceBg6 from '../images/home/serviceBg6.png';
 
 const blogs = [
     {
