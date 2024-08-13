@@ -4,8 +4,9 @@ import styles from '../css/blogSlider.module.css';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { blogs } from '../data/blogs';  // Import the blogs data
 
-const BlogSlider = ({ blogs }) => {
+const BlogSlider = () => {  // Remove the 'blogs' prop since we're importing it directly
     const settings = {
         dots: false,
         infinite: true,
@@ -26,13 +27,20 @@ const BlogSlider = ({ blogs }) => {
         prevArrow: <PrevArrow />
     };
 
+    const truncateContent = (content, maxWords) => {
+        const words = content.split(' ');
+        if (words.length > maxWords) {
+            return words.slice(0, maxWords).join(' ') + '...';
+        }
+        return content;
+    };
     return (
         <Slider {...settings} className={styles.slider}>
             {blogs.map((blog, index) => (
                 <div key={index} className={styles.blogSlide}>
                     <img src={blog.image} alt={blog.title} />
                     <h3>{blog.title}</h3>
-                    <p>{blog.text}</p>
+                    <p>{truncateContent(blog.content, 10)}</p>
                     <Link to={`/blog/${blog.id}`} className={styles.readMore}>Read More</Link>
                 </div>
             ))}

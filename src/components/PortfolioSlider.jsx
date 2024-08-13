@@ -88,9 +88,6 @@ const PortfolioSlider = () => {
                                     alt={`Slide ${index + 1}`}
                                 />
                             </div>
-                            {/*<div className={styles.slideText}>*/}
-                            {/*    {slide.title}*/}
-                            {/*</div>*/}
                         </SwiperSlide>
                     ))}
                 </Swiper>
