@@ -86,7 +86,7 @@ function Home() {
             </section>
             <section id={styles.portfolio}>
                 <div className={styles.servicesContent}>
-                    <p>Portfolio</p>
+                    <p>From Idea to Visualisation</p>
                     <hr className={styles.homeSectionDivider}/>
                 </div>
                 <PortfolioSlider/>

@@ -14,11 +14,11 @@ import {EffectCoverflow} from "swiper/modules";
 const PortfolioSlider = () => {
 
     const slides = [
-        { image: ring1, title: "From Idea to Visualisation", className: 'smaller' },
-        { image: ring2, title: "From Idea to Visualisation", className: 'onTop' },
-        { image: ring5, title: "From Idea to Visualisation" },
-        { image: ring3, title: "From Idea to Visualisation" },
-        { image: ring4, title: "From Idea to Visualisation" },
+        { image: ring1, className: 'smaller' },
+        { image: ring2, className: 'onTop' },
+        { image: ring5,},
+        { image: ring3,},
+        { image: ring4,},
 
     ];
 
@@ -88,9 +88,9 @@ const PortfolioSlider = () => {
                                     alt={`Slide ${index + 1}`}
                                 />
                             </div>
-                            <div className={styles.slideText}>
-                                {slide.title}
-                            </div>
+                            {/*<div className={styles.slideText}>*/}
+                            {/*    {slide.title}*/}
+                            {/*</div>*/}
                         </SwiperSlide>
                     ))}
                 </Swiper>

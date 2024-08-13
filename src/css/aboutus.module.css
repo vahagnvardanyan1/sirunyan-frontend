@@ -6,6 +6,20 @@
     padding: 0 1rem;
 }
 
+.loadingContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
 .servicesContent,
 .ourTeam .title,
 .whatWeDo .title,

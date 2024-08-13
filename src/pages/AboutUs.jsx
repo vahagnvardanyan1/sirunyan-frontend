@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../css/aboutus.module.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from "swiper/modules";
 
+// Team Members
 import teamMember1 from '../images/teamMembers/teamMember1.png';
 import teamMember2 from '../images/teamMembers/teamMember2.webp';
 import teamMember3 from '../images/teamMembers/teamMember3.png';
@@ -14,17 +15,27 @@ import teamMember5 from '../images/teamMembers/teamMember5.png';
 import teamMember6 from '../images/teamMembers/teamMember6.webp';
 import teamMember7 from '../images/teamMembers/teamMember7.webp';
 
+// Footer Slider Images
 import footerSlider1 from '../images/teamMembers/footerSlider1.webp';
 import footerSlider2 from '../images/teamMembers/footerSlider2.webp';
 import footerSlider3 from '../images/teamMembers/footerSlider3.webp';
 import footerSlider4 from '../images/teamMembers/footerSlider4.webp';
 import footerSlider6 from '../images/teamMembers/footerSlider6.webp';
+import LoadingAnimation from "../components/LoadingAnimation";
 
 function AboutUs() {
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
 
+        // Simulate loading delay
+        const loadingDelay = setTimeout(() => {
+            setLoading(false);
+        }, 2000); // Adjust delay as needed
+
+        return () => clearTimeout(loadingDelay);
+    }, []);
 
     const teamMembers = [
         { name: "Tatev Sirunyan", role: "Founder CEO", image: teamMember1, text: "Our CEO is like a gem in the realm of jewelry CAD, constantly polishing her expertise, showering the team with care, and occasionally just forgetting that sleep is as precious as a flawless diamond!" },
@@ -43,6 +54,14 @@ function AboutUs() {
         { image: footerSlider4 },
         { image: footerSlider6 },
     ];
+
+    if (loading) {
+        return (
+            <div className={styles.loadingContainer}>
+                <LoadingAnimation />
+            </div>
+        );
+    }
 
     return (
         <div className={styles.about}>

@@ -69,13 +69,15 @@ import smmImg5 from '../images/portfolio/Rendering for Websites and SMM/5.jpg';
 import sketchImg1 from '../images/portfolio/Sketch/1.jpg';
 import sketchImg2 from '../images/portfolio/Sketch/2.jpg';
 import sketchImg3 from '../images/portfolio/Sketch/3.jpg';
-import sketchImg4 from '../images/portfolio/Sketch/4.jpg';
-import sketchImg6 from '../images/portfolio/Sketch/6.jpg';
-import sketchImg7 from '../images/portfolio/Sketch/7.png';
+import sketchImg4 from '../images/portfolio/Sketch/4.png';
+import sketchImg5 from '../images/portfolio/Sketch/5.jpg';
+import sketchImg6 from '../images/portfolio/Sketch/6.png';
+import sketchImg7 from '../images/portfolio/Sketch/7.jpg';
 import sketchImg9 from '../images/portfolio/Sketch/9.jpg';
-import sketchImg10 from '../images/portfolio/Sketch/10.png';
+import sketchImg10 from '../images/portfolio/Sketch/10.jpg';
 import sketchIm11 from '../images/portfolio/Sketch/11.png';
 import sketchImg12 from '../images/portfolio/Sketch/12.jpg';
+import LoadingAnimation from "../components/LoadingAnimation";
 
 
 SwiperCore.use([Grid, Navigation]);
@@ -103,6 +105,7 @@ function Portfolio() {
             sketchImg2,
             sketchImg3,
             sketchImg4,
+            sketchImg5,
             sketchImg6,
             sketchImg7,
             sketchImg9,
@@ -170,14 +173,20 @@ function Portfolio() {
 
     useEffect(() => {
         const totalMedia = imagesByCategory[selectedCategory].length;
-        if (loadedMedia === totalMedia) {
-            setLoading(false);
-        }
+        const loadingDelay = 2000;
+
+        const timer = setTimeout(() => {
+            if (loadedMedia === totalMedia) {
+                setLoading(false);
+            }
+        }, loadingDelay);
+
+        return () => clearTimeout(timer);
     }, [loadedMedia, selectedCategory, imagesByCategory]);
 
     useEffect(() => {
         if (swiperRef.current) {
-            swiperRef.current.slideTo(0, 0);  // Reset Swiper to the first slide
+            swiperRef.current.slideTo(0, 0);
         }
     }, [selectedCategory]);
 
@@ -215,7 +224,7 @@ function Portfolio() {
         <div className={styles.portfolio}>
             {loading && (
                 <div className={styles.loadingOverlay}>
-                    <div className={styles.spinner}></div>
+                    <LoadingAnimation />
                 </div>
             )}
             <div className={styles.categories}>
@@ -245,7 +254,7 @@ function Portfolio() {
 
             <Swiper
                 onSwiper={(swiper) => {
-                    swiperRef.current = swiper; // Store swiper instance
+                    swiperRef.current = swiper;
                 }}
                 modules={[Grid, Navigation]}
                 grid={{

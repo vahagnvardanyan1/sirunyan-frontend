@@ -6,9 +6,9 @@ import styles from '../css/contactUs.module.css';
 import phone from '../assets/phone.png';
 import message from '../assets/message.png';
 import location from '../assets/location.png';
-import instagram from '../assets/Instagram.png';
-import discord from '../assets/Discord.png';
-import twitter from '../assets/twitter.png';
+// import instagram from '../assets/Instagram.png';
+// import discord from '../assets/Discord.png';
+// import twitter from '../assets/twitter.png';
 import ring from '../assets/ring.png';
 import letterSend from '../assets/letter_send 1.png';
 import closeBtn from '../assets/closeBtn.svg';
@@ -25,12 +25,30 @@ function ContactUsModal({ isOpen, onClose }) {
     });
 
     const handleChange = (event) => {
-        const { name, value, type } = event.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            [name]: type === 'checkbox' ? [...prevState.service, value] : value,
-        }));
+        const { name, value, type, checked } = event.target;
+
+        if (type === 'checkbox') {
+            setFormData((prevState) => {
+                if (checked) {
+                    return {
+                        ...prevState,
+                        service: [...prevState.service, value],
+                    };
+                } else {
+                    return {
+                        ...prevState,
+                        service: prevState.service.filter((service) => service !== value),
+                    };
+                }
+            });
+        } else {
+            setFormData((prevState) => ({
+                ...prevState,
+                [name]: value,
+            }));
+        }
     };
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
