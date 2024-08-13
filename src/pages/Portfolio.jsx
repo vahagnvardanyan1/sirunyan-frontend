@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { useLocation } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -14,7 +14,6 @@ import modelingImg1 from '../images/portfolio/Modeling/1.jpg';
 import modelingImg2 from '../images/portfolio/Modeling/2.jpg';
 import modelingImg3 from '../images/portfolio/Modeling/3.jpg';
 import modelingImg4 from '../images/portfolio/Modeling/4.jpg';
-import modelingImg5 from '../images/portfolio/Modeling/5.jpg';
 import modelingImg6 from '../images/portfolio/Modeling/6.jpg';
 import modelingImg7 from '../images/portfolio/Modeling/7.jpg';
 import modelingImg8 from '../images/portfolio/Modeling/8.jpg';
@@ -42,7 +41,7 @@ import renderImg13 from '../images/portfolio/Renderings/13.jpg';
 import renderImg14 from '../images/portfolio/Renderings/14.jpg';
 import renderImg15 from '../images/portfolio/Renderings/15.jpg';
 
-// Sculptings
+// Sculpting
 import sculptImg1 from '../images/portfolio/Sculpting/1.jpg';
 import sculptImg2 from '../images/portfolio/Sculpting/2.jpg';
 import sculptImg3 from '../images/portfolio/Sculpting/3.jpg';
@@ -58,7 +57,6 @@ import {Grid, Navigation} from "swiper/modules";
 import animation1 from '../images/portfolio/Videos/1.mp4';
 import animation2 from '../images/portfolio/Videos/2.mp4';
 import animation3 from '../images/portfolio/Videos/3.mp4';
-
 
 // Rendering for Websites and SMM
 import smmImg1 from '../images/portfolio/Rendering for Websites and SMM/1.jpg';
@@ -83,6 +81,10 @@ import sketchImg12 from '../images/portfolio/Sketch/12.jpg';
 SwiperCore.use([Grid, Navigation]);
 
 function Portfolio() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const location = useLocation();
     const initialCategory = location.state?.category || 'Sketching';
 
@@ -91,6 +93,7 @@ function Portfolio() {
     const [selectedMedia, setSelectedMedia] = useState(null);
     const [loading, setLoading] = useState(true);
     const [loadedMedia, setLoadedMedia] = useState(0);
+    const swiperRef = useRef(null);
 
     const categories = ['Sketching', '3D modeling', 'Sculpting', 'Rendering', 'Rendering & more for websites and smm', 'Animations'];
 
@@ -107,14 +110,49 @@ function Portfolio() {
             sketchIm11,
             sketchImg12,
         ],
+
         '3D modeling': [
-            modelingImg1, modelingImg2, modelingImg3, modelingImg4, modelingImg5, modelingImg6, modelingImg7, modelingImg8, modelingImg9, modelingImg10, modelingImg11, modelingImg12,modelingImg13, modelingImg14, modelingImg15,
+            modelingImg1,
+            modelingImg2,
+            modelingImg3,
+            modelingImg4,
+            modelingImg10,
+            modelingImg12,
+            modelingImg14,
+            modelingImg6,
+            modelingImg7,
+            modelingImg8,
+            modelingImg9,
+            modelingImg11,
+            modelingImg13,
+            modelingImg15,
         ],
         'Sculpting': [
-            sculptImg1, sculptImg2, sculptImg3, sculptImg4, sculptImg5, sculptImg6, sculptImg7, sculptImg8,sculptImg9
+            sculptImg1,
+            sculptImg2,
+            sculptImg3,
+            sculptImg4,
+            sculptImg5,
+            sculptImg6,
+            sculptImg7,
+            sculptImg8,
+            sculptImg9
         ],
         'Rendering': [
-            renderImg1, renderImg2, renderImg3, renderImg4, renderImg6, renderImg7, renderImg8, renderImg9, renderImg10, renderIm11, renderImg12, renderImg13, renderImg14, renderImg15
+            renderImg1,
+            renderImg2,
+            renderImg3,
+            renderImg4,
+            renderImg6,
+            renderImg7,
+            renderImg8,
+            renderImg9,
+            renderImg10,
+            renderIm11,
+            renderImg12,
+            renderImg13,
+            renderImg14,
+            renderImg15
         ],
         'Rendering & more for websites and smm': [
             smmImg1,
@@ -126,14 +164,22 @@ function Portfolio() {
         'Animations': [
             animation1,
             animation2,
-            animation3,],
+            animation3,
+        ],
     };
+
     useEffect(() => {
         const totalMedia = imagesByCategory[selectedCategory].length;
         if (loadedMedia === totalMedia) {
             setLoading(false);
         }
     }, [loadedMedia, selectedCategory, imagesByCategory]);
+
+    useEffect(() => {
+        if (swiperRef.current) {
+            swiperRef.current.slideTo(0, 0);  // Reset Swiper to the first slide
+        }
+    }, [selectedCategory]);
 
     const handleMediaLoad = () => {
         setLoadedMedia((prev) => prev + 1);
@@ -198,6 +244,9 @@ function Portfolio() {
             </div>
 
             <Swiper
+                onSwiper={(swiper) => {
+                    swiperRef.current = swiper; // Store swiper instance
+                }}
                 modules={[Grid, Navigation]}
                 grid={{
                     rows: 3,
@@ -225,7 +274,11 @@ function Portfolio() {
                 className={styles.categoriesContainer}
             >
                 {imagesByCategory[selectedCategory].map((media, index) => (
-                    <SwiperSlide key={index} className={styles.slideBlock} onClick={() => openModal(media)}>
+                    <SwiperSlide
+                        key={index}
+                        className={`${styles.slideBlock} ${selectedCategory === 'Sketching' ? styles.sketching : ''}`}
+                        onClick={() => openModal(media)}
+                    >
                         {isVideo(media) ? (
                             <video
                                 src={media}

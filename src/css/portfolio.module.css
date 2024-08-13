@@ -167,6 +167,11 @@
     color: #555555;
     text-align: center;
     overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.slideBlock.sketching {
+    height: 400px !important;
 }
 
 .portfolioImage {

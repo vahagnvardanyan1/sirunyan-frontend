@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styles from '../css/home.module.css';
 import PortfolioSlider from '../components/PortfolioSlider';
@@ -53,6 +53,9 @@ const services = [
 
 
 function Home() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className={styles.home}>
             <section id={styles.services}>

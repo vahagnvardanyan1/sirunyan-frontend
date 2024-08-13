@@ -19,18 +19,42 @@ const BlogDetail = () => {
                 <p>{blog.content}</p>
             </div>
 
-            {blog.subTitle && <p className={styles.subTitle}>{blog.subTitle}</p>}
-
-            {blog.subtitleContent && (
-                <div className={styles.subtitleContent}>
-                    <p>{blog.subtitleContent}</p>
-                </div>
+            {blog.subTitle && (
+                <>
+                    <h3 className={styles.subTitle}>{blog.subTitle}</h3>
+                    <div className={styles.subtitleContent}>
+                        <p>{blog.subtitleContent}</p>
+                    </div>
+                </>
             )}
 
             {blog.images.length > 0 && (
                 <div className={styles.blogContentPhotos}>
                     {blog.images.map((img, index) => (
-                        <img key={index} src={img} alt={`Blog image ${index + 1}`} />
+                        <div key={index} className={styles.imageContainer}>
+                            <img src={img.src} alt={`Blog image ${index + 1}`} />
+                            <p className={styles.imageCaption}>{img.caption}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            {blog.subTitle1 && (
+                <>
+                    <h3 className={styles.subTitle}>{blog.subTitle1}</h3>
+                    <div className={styles.subContent}>
+                        <p>{blog.subContent}</p>
+                    </div>
+                </>
+            )}
+
+            {blog.images1.length > 0 && (
+                <div className={styles.blogContentPhotos}>
+                    {blog.images1.map((img, index) => (
+                        <div key={index} className={styles.imageContainer}>
+                            <img src={img.src} alt={`Blog image ${index + 1}`} />
+                            <p className={styles.imageCaption}>{img.caption}</p>
+                        </div>
                     ))}
                 </div>
             )}

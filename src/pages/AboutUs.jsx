@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from '../css/aboutus.module.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -21,6 +21,11 @@ import footerSlider4 from '../images/teamMembers/footerSlider4.webp';
 import footerSlider6 from '../images/teamMembers/footerSlider6.webp';
 
 function AboutUs() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+
     const teamMembers = [
         { name: "Tatev Sirunyan", role: "Founder CEO", image: teamMember1, text: "Our CEO is like a gem in the realm of jewelry CAD, constantly polishing her expertise, showering the team with care, and occasionally just forgetting that sleep is as precious as a flawless diamond!" },
         { name: "Elen Davtyan", role: "Co-Founder Senior CAD Professional", image: teamMember2, text: "A self-confident and enthusiastic Senior CAD professional who once dazzled on the football field, theatres and even fencing stripes, and now charms everyone with her sociable and friendly nature, making her a beloved figure in both her personal and professional circles." },
