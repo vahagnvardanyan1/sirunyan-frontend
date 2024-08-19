@@ -56,7 +56,7 @@ const BlogSlider = () => {
 
     return (
         <Slider {...settings} className={styles.slider}>
-            {blogs.map((blog) => (
+            {blogs?.map((blog) => (
                 <div key={blog._id} className={styles.blogSlide}>
                     <img src={`${REACT_APP_API_BASE_URL_IMAGES}/${blog.bannerImage}`} alt={blog.bannerText} />
                     <h3 dangerouslySetInnerHTML={{ __html: blog.bannerText }} />
