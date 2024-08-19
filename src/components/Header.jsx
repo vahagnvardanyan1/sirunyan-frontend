@@ -5,7 +5,7 @@ import styles from '../css/header.module.css';
 import video from '../assets/video.mp4';
 import portfolioBanner from '../images/portfolio-banner.png';
 import servicesBanner from '../images/Services/Services-Banner.png';
-import aboutusBanner from '../images/teamMembers/footerSlider2.webp';
+import aboutusBanner from '../images/footerSlider2.webp';
 
 const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const REACT_APP_API_BASE_URL_IMAGES = process.env.REACT_APP_API_BASE_URL_IMAGES;

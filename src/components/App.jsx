@@ -8,11 +8,9 @@ import ElipseBackground from "./ElipseBackground";
 import Footer from '../components/Footer';
 import Services from '../pages/Services';
 import Portfolio from '../pages/Portfolio';
-import Blog from '../pages/Blog';
 import ContactUsModal from './ContactUsModal';
 import styles from '../css/app.module.css';
 import BlogDetail from "./BlogDetail";
-import {blogs} from "../data/blogs";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +29,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/service" element={<Services />} />
         <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/blog/:id" element={<BlogDetail blogs={blogs} />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
       </Routes>
 
       <Footer openModal={openModal} />
