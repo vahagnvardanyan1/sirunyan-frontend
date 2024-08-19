@@ -1,3 +1,4 @@
+/* General styling for .about section */
 .about {
     display: flex;
     flex-direction: column;
@@ -6,6 +7,7 @@
     padding: 0 1rem;
 }
 
+/* Loading container styling */
 .loadingContainer {
     position: fixed;
     top: 0;
@@ -20,6 +22,7 @@
     z-index: 1000;
 }
 
+/* Services, team, and mission titles */
 .servicesContent,
 .ourTeam .title,
 .whatWeDo .title,
@@ -29,6 +32,7 @@
     margin-bottom: 1rem;
 }
 
+/* Text styling */
 .servicesContent p,
 .ourTeam .title p,
 .whatWeDo .title p,
@@ -38,10 +42,12 @@
     color: #565656;
 }
 
+/* Services content adjustment */
 .servicesContent p {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
+/* About section divider styling */
 .aboutSectionDivider {
     width: 8%;
     margin: 0.3rem auto;
@@ -59,6 +65,7 @@
     position: relative;
 }
 
+/* Mission section divider */
 .ourMissionAboutSectionDivider {
     position: absolute;
     bottom: -10px;
@@ -71,10 +78,12 @@
     border: none;
 }
 
+/* Subtitle styling */
 .aboutSubtitle .firstSubtitle {
     margin: 1rem 0;
 }
 
+/* Title adjustments */
 .title {
     position: relative;
     padding-bottom: 1rem;
@@ -85,6 +94,7 @@
     padding-bottom: 1rem;
 }
 
+/* Subtitle adjustments */
 .aboutSubtitle {
     margin: 1rem auto;
     max-width: 70%;
@@ -94,9 +104,10 @@
 .aboutSubtitle .firstSubtitle {
     font-weight: 500;
     color: #565656;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 }
 
+/* Content container for about us */
 .aboutusContent {
     margin-top: 2rem;
     max-width: 85%;
@@ -109,17 +120,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .aboutusContent p {
     width: 94%;
     color: #565656;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin: 1rem 0;
-    line-height: 26px;
+    line-height: 2rem;
     font-weight: 400;
 }
 
+/* Team section styling */
 .ourTeam {
     margin-top: 3rem;
     width: 100%;
@@ -131,6 +144,7 @@
     margin: 2rem auto;
 }
 
+/* Slider content */
 .slideContent {
     position: relative;
     display: flex;
@@ -150,6 +164,7 @@
     object-fit: cover;
 }
 
+/* Text overlay for sliders */
 .textOverlay {
     position: absolute;
     top: 0;
@@ -169,6 +184,7 @@
     backdrop-filter: blur(5px);
 }
 
+/* Hover effects */
 .slideContent:hover .textOverlay {
     opacity: 1;
 }
@@ -177,6 +193,7 @@
     opacity: 0;
 }
 
+/* Member information styling */
 .memberInfo {
     position: absolute;
     bottom: 10px;
@@ -189,20 +206,23 @@
     padding-left: 10px;
 }
 
+/* Member name styling */
 .name {
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
+/* Member role styling */
 .role {
     color: #fff;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: 0.3rem;
     text-align: left;
 }
 
+/* Controller buttons */
 .controllers {
     display: flex;
     gap: 0.5rem;
@@ -226,6 +246,7 @@
     background-color: #d8c8b3;
 }
 
+/* What we do section */
 .whatWeDo {
     margin-top: 3rem;
     width: 100%;
@@ -247,6 +268,7 @@
     margin: 0 auto;
 }
 
+/* Our mission and values */
 .ourMission,
 .ourValues {
     flex: 1 1 calc(50% - 2rem);
@@ -261,16 +283,17 @@
 
 .ourMissionContent,
 .ourValuesContent {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     color: #555555;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .ourMissionTitle p,
 .ourValuesTitle p {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 
+/* Footer slider container */
 .footerSliderContainer {
     width: 100%;
     text-align: center;
@@ -283,6 +306,7 @@
     margin: 0 auto;
 }
 
+/* Footer slider content */
 .footerSlideContent {
     display: flex;
     align-items: center;
@@ -300,6 +324,7 @@
     border-radius: 20px;
 }
 
+/* Custom pagination */
 .custom-pagination {
     display: flex;
     justify-content: center;
@@ -320,6 +345,7 @@
     background-color: #BAA588;
 }
 
+/* Footer controls */
 .footerControllers {
     display: flex;
     justify-content: space-between;
@@ -342,6 +368,41 @@
     background-color: #d8c8b3;
 }
 
+/* Media queries for screens between 776px and 1388px */
+@media (min-width: 776px) and (max-width: 1388px) {
+    .aboutusContent {
+        max-width: 90%;
+        padding: 2rem;
+    }
+
+    .slideContent {
+        width: calc(100% - 20px);
+        max-width: 300px;
+        height: auto;
+    }
+
+    .whatWeDo .title p,
+    .servicesContent p,
+    .ourTeam .title p,
+    .whatWeDo .title p,
+    .ourMissionTitle p,
+    .ourValuesTitle p {
+        font-size: 1.6rem;
+    }
+
+    .servicesContent p {
+        font-size: 2rem;
+    }
+
+    .ourMission,
+    .ourValues {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Adjustments for medium screens */
 @media (max-width: 768px) {
     .aboutSectionDivider {
         width: 6rem;
@@ -399,11 +460,32 @@
     .role {
         font-size: 0.8rem;
     }
+
+    .servicesContent p,
+    .ourTeam .title p,
+    .whatWeDo .title p,
+    .ourMissionTitle p,
+    .ourValuesTitle p {
+        font-size: 1.8rem;
+    }
+
+    .servicesContent p {
+        font-size: 2rem;
+    }
+
+    .aboutSubtitle .firstSubtitle {
+        font-size: 1.4rem;
+    }
+
+    .aboutusContent p {
+        font-size: 1.2rem;
+    }
 }
 
+/* Adjustments for small screens */
 @media (max-width: 480px) {
     .aboutSubtitle .firstSubtitle {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .aboutusContent {
@@ -412,7 +494,7 @@
     }
 
     .aboutusContent p {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .whatWeDoContent {
@@ -431,8 +513,8 @@
     }
 
     .slideContent {
-        width: 250px;
-        height: 450px;
+        width: 230px;
+        height: 400px;
     }
 
     .textOverlay p {
@@ -450,5 +532,25 @@
 
     .role {
         font-size: 0.7rem;
+    }
+
+    .servicesContent p,
+    .ourTeam .title p,
+    .whatWeDo .title p,
+    .ourMissionTitle p,
+    .ourValuesTitle p {
+        font-size: 1.6rem;
+    }
+
+    .servicesContent p {
+        font-size: 1.8rem;
+    }
+
+    .aboutSubtitle .firstSubtitle {
+        font-size: 1.2rem;
+    }
+
+    .aboutusContent p {
+        font-size: 0.9rem;
     }
 }

@@ -1,17 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 import styles from '../css/header.module.css';
 import video from '../assets/video.mp4';
 import portfolioBanner from '../images/portfolio-banner.png';
 import servicesBanner from '../images/Services/Services-Banner.png';
 import aboutusBanner from '../images/teamMembers/footerSlider2.webp';
-import { blogs } from '../data/blogs';
+
+const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const REACT_APP_API_BASE_URL_IMAGES = process.env.REACT_APP_API_BASE_URL_IMAGES;
 
 function Header({ openModal }) {
     const location = useLocation();
+    const [selectedBlog, setSelectedBlog] = useState(null);
 
-    const blogId = location.pathname.startsWith('/blog/') ? parseInt(location.pathname.split('/')[2], 10) : null;
-    const selectedBlog = blogs.find(blog => blog.id === blogId);
+    const blogId = location.pathname.startsWith('/blog/') ? location.pathname.split('/')[2] : null;
+
+    useEffect(() => {
+        if (blogId) {
+            const fetchBlog = async () => {
+                try {
+                    const response = await axios.get(`${REACT_APP_API_BASE_URL}/blog/${blogId}`);
+                    setSelectedBlog(response.data.data);
+                } catch (error) {
+                    console.error("Error fetching blog:", error);
+                }
+            };
+
+            fetchBlog();
+        }
+    }, [blogId]);
+
+    const decodeHTML = (html) => {
+        const txt = document.createElement('textarea');
+        txt.innerHTML = html;
+        return txt.value;
+    };
+
+    const cleanTitle = (title) => {
+        return decodeHTML(title.replace(/&nbsp;/g, ' '));
+    };
 
     const pageContent = {
         '/': {
@@ -21,24 +49,6 @@ function Header({ openModal }) {
             title: 'The beautiful language of your imagination',
             showButton: true,
         },
-        '/blog': selectedBlog
-            ? {
-                type: 'image',
-                src: selectedBlog.image,
-                alt: 'Blog Banner',
-                title: `${selectedBlog.title} - ${selectedBlog.date}`,
-                showButton: false,
-                additionalStyles: {
-                    justifyContent: 'flex-end',
-                },
-            }
-            : {
-                type: 'image',
-                src: portfolioBanner,
-                alt: 'Blog Banner',
-                title: 'Blog - 12/22/2024 min read',
-                showButton: false,
-            },
         '/portfolio': {
             type: 'image',
             src: portfolioBanner,
@@ -61,6 +71,27 @@ function Header({ openModal }) {
             showButton: true,
         },
     };
+
+    if (selectedBlog) {
+        pageContent['/blog'] = {
+            type: 'image',
+            src: `${REACT_APP_API_BASE_URL_IMAGES}/${selectedBlog.bannerImage}`,
+            alt: 'Blog Banner',
+            title: cleanTitle(selectedBlog.bannerText.replace(/<\/?[^>]+(>|$)/g, '')), // Stripping HTML tags and cleaning the title
+            showButton: false,
+            additionalStyles: {
+                justifyContent: 'flex-end',
+            },
+        };
+    } else if (blogId) {
+        pageContent['/blog'] = {
+            type: 'image',
+            src: portfolioBanner, // Default image in case blog data is still loading
+            alt: 'Blog Banner',
+            title: 'Loading...',
+            showButton: false,
+        };
+    }
 
     const currentPage = pageContent[location.pathname] || pageContent['/blog'];
 

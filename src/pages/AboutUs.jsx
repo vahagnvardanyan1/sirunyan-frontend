@@ -1,59 +1,43 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from '../css/aboutus.module.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from "swiper/modules";
-
-// Team Members
-import teamMember1 from '../images/teamMembers/teamMember1.png';
-import teamMember2 from '../images/teamMembers/teamMember2.webp';
-import teamMember3 from '../images/teamMembers/teamMember3.png';
-import teamMember4 from '../images/teamMembers/teamMember4.png';
-import teamMember5 from '../images/teamMembers/teamMember5.png';
-import teamMember6 from '../images/teamMembers/teamMember6.webp';
-import teamMember7 from '../images/teamMembers/teamMember7.webp';
-
-// Footer Slider Images
-import footerSlider1 from '../images/teamMembers/footerSlider1.webp';
-import footerSlider2 from '../images/teamMembers/footerSlider2.webp';
-import footerSlider3 from '../images/teamMembers/footerSlider3.webp';
-import footerSlider4 from '../images/teamMembers/footerSlider4.webp';
-import footerSlider6 from '../images/teamMembers/footerSlider6.webp';
 import LoadingAnimation from "../components/LoadingAnimation";
+
+const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001/api';
+const REACT_APP_API_BASE_URL_IMAGES = process.env.REACT_APP_API_BASE_URL_IMAGES || 'http://localhost:3001/images';
 
 function AboutUs() {
     const [loading, setLoading] = useState(true);
+    const [teamMembers, setTeamMembers] = useState([]);
+    const [footerSlides, setFooterSlides] = useState([]);
 
+    console.log(teamMembers)
     useEffect(() => {
         window.scrollTo(0, 0);
 
-        // Simulate loading delay
-        const loadingDelay = setTimeout(() => {
-            setLoading(false);
-        }, 2000); // Adjust delay as needed
+        const fetchData = async () => {
+            try {
+                const [teamMembersResponse, footerSlidesResponse] = await Promise.all([
+                    axios.get(`${REACT_APP_API_BASE_URL}/team`),
+                    axios.get(`${REACT_APP_API_BASE_URL}/slider`)
+                ]);
 
-        return () => clearTimeout(loadingDelay);
+                setTeamMembers(teamMembersResponse.data);
+                setFooterSlides(footerSlidesResponse.data);
+            } catch (error) {
+                console.error("Error fetching data", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
     }, []);
-
-    const teamMembers = [
-        { name: "Tatev Sirunyan", role: "Founder CEO", image: teamMember1, text: "Our CEO is like a gem in the realm of jewelry CAD, constantly polishing her expertise, showering the team with care, and occasionally just forgetting that sleep is as precious as a flawless diamond!" },
-        { name: "Elen Davtyan", role: "Co-Founder Senior CAD Professional", image: teamMember2, text: "A self-confident and enthusiastic Senior CAD professional who once dazzled on the football field, theatres and even fencing stripes, and now charms everyone with her sociable and friendly nature, making her a beloved figure in both her personal and professional circles." },
-        { name: "Lilith", role: "Sketcher", image: teamMember3, text: "The ethereal artist who's as fragile as a butterfly but can knock out a masterpiece with one hand and an opponent with the other like a heavyweight champion, critiques with the precision of a surgeon, rebels against all things dull, and enjoys life like it's one big, beautiful canvas!" },
-        { name: "Shushan", role: "Rendering Professional", image: teamMember4, text: "Оur rendering professional is like a kaleidoscope of energy: detail-oriented enough to spot a misplaced pixel, chatty enough to entertain a whole room, and so infectiously upbeat, they could turn a gloomy Monday into a disco party—all while making your jewelry designs look absolutely dazzling!" },
-        { name: "Rima", role: "CAD Professional", image: teamMember5, text: "A brilliant and humble CAD professional whose calm and peaceful demeanor is only rivaled by her endearing reluctance to ever reveal her favorite song." },
-        { name: "Suren", role: "The future CAD star", image: teamMember6, text: "The future CAD star with a talkative streak, a sugar-free sweet tooth (except for those daily six spoons in his tea), and a love for his job so strong, he's contemplating moving permanently to the office with his pillow." },
-        { name: "Mayis", role: "The future CAD star", image: teamMember7, text: "Don't let his \"Nothing\" answers fool you – our junior CAD designer is a secret weapon when it comes to 3D modeling of stunning jewelry designs. And, just for the record, he's also a champion of the \"do-it-all\" philosophy, having conquered football, fencing, and boxing (but shhhh, don't tell him we mentioned those!)." },
-    ];
-
-    const footerSlides = [
-        { image: footerSlider1 },
-        { image: footerSlider2 },
-        { image: footerSlider3 },
-        { image: footerSlider4 },
-        { image: footerSlider6 },
-    ];
 
     if (loading) {
         return (
@@ -127,7 +111,6 @@ function AboutUs() {
                             direction: 'horizontal',
                             spaceBetween: 20,
                         },
-
                         1024: {
                             slidesPerView: 3.25,
                             direction: 'horizontal',
@@ -155,20 +138,20 @@ function AboutUs() {
                         },
                     }}
                 >
-                    {teamMembers.map((member, index) => (
-                        <SwiperSlide key={index}>
-                            <div className={styles.slideContent}>
-                                <img src={member.image} alt={member.name} />
-                                <div className={styles.textOverlay}>
-                                    <p>{member.text}</p>
-                                </div>
-                                <div className={styles.memberInfo}>
-                                    <span className={styles.name}>{member.name}</span>
-                                    <span className={styles.role}>{member.role}</span>
-                                </div>
+                    {teamMembers?.data?.map((member, index) => (
+                    <SwiperSlide key={index}>
+                        <div className={styles.slideContent}>
+                            <img src={`${REACT_APP_API_BASE_URL_IMAGES}/${member.image}`} alt={member.fullName} />
+                            <div className={styles.textOverlay}>
+                                <p>{member.content}</p>
                             </div>
-                        </SwiperSlide>
-                    ))}
+                            <div className={styles.memberInfo}>
+                                <span className={styles.name}>{member.fullName}</span>
+                                <span className={styles.role}>{member.role}</span>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                ))}
                 </Swiper>
             </div>
             <div className={styles.whatWeDo}>
@@ -233,10 +216,10 @@ function AboutUs() {
                     loop={true}
                     className={styles.footerSlider}
                 >
-                    {footerSlides.map((slide, index) => (
+                    {footerSlides?.data?.map((slide, index) => (
                         <SwiperSlide key={index}>
                             <div className={styles.footerSlideContent}>
-                                <img src={slide.image} alt={`Footer slide ${index + 1}`} className={styles.footerSlideImage} />
+                                <img src={`${REACT_APP_API_BASE_URL_IMAGES}/${slide.image}`} alt={`Footer slide ${index + 1}`} className={styles.footerSlideImage} />
                             </div>
                         </SwiperSlide>
                     ))}

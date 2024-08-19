@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../css/blogSlider.module.css';
 import Slider from 'react-slick';
+import axios from 'axios';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { blogs } from '../data/blogs';  // Import the blogs data
 
-const BlogSlider = () => {  // Remove the 'blogs' prop since we're importing it directly
+const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const REACT_APP_API_BASE_URL_IMAGES = process.env.REACT_APP_API_BASE_URL_IMAGES;
+
+const BlogSlider = () => {
+    const [blogs, setBlogs] = useState([]);
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const response = await axios.get(`${REACT_APP_API_BASE_URL}/blog`);
+                setBlogs(response.data.data);
+            } catch (error) {
+                console.error("Error fetching blogs:", error);
+            }
+        };
+
+        fetchBlogs();
+    }, []);
+
     const settings = {
         dots: false,
         infinite: true,
@@ -34,14 +52,16 @@ const BlogSlider = () => {  // Remove the 'blogs' prop since we're importing it 
         }
         return content;
     };
+
+
     return (
         <Slider {...settings} className={styles.slider}>
-            {blogs.map((blog, index) => (
-                <div key={index} className={styles.blogSlide}>
-                    <img src={blog.image} alt={blog.title} />
-                    <h3>{blog.title}</h3>
-                    <p>{truncateContent(blog.content, 10)}</p>
-                    <Link to={`/blog/${blog.id}`} className={styles.readMore}>Read More</Link>
+            {blogs.map((blog) => (
+                <div key={blog._id} className={styles.blogSlide}>
+                    <img src={`${REACT_APP_API_BASE_URL_IMAGES}/${blog.bannerImage}`} alt={blog.bannerText} />
+                    <h3 dangerouslySetInnerHTML={{ __html: blog.bannerText }} />
+                    <p>{truncateContent(blog.text2.replace(/<[^>]+>/g, ''), 10)}</p>
+                    <Link to={`/blog/${blog._id}`} className={styles.readMore}>Read More</Link>
                 </div>
             ))}
         </Slider>

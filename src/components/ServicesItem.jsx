@@ -7,7 +7,7 @@ function ServicesItem({ image, title, description, isReversed, onClick }) {
             <div className={styles['image-container']}>
                 <img src={image} alt={title} className={styles.image} />
                 <div className={`${styles['title-overlay']} ${isReversed ? styles.right : styles.left}`}>
-                    {title}
+                        {title}
                     <hr className={`${styles.serviceSectionDivider} ${isReversed ? styles.right : styles.left}`} />
                 </div>
             </div>

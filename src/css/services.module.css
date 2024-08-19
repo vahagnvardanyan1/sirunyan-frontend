@@ -42,13 +42,25 @@
 }
 
 .image-container::before {
+    content: "";
+    position: absolute;
     top: 0;
-    background: linear-gradient(to bottom, rgba(255, 226, 207, 0.7), rgba(0, 0, 0, 0));
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(184, 184, 187, 0.7), rgba(224, 222, 213, 0));
+    z-index: 1;
 }
 
 .image-container::after {
+    content: "";
+    position: absolute;
     bottom: 0;
-    background: linear-gradient(to top, rgba(255, 226, 207, 0.7), rgba(0, 0, 0, 0));
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(184, 184, 187, 0.7), rgba(224, 222, 213, 0));
+    z-index: 1;
 }
 
 .title-overlay {
@@ -56,7 +68,7 @@
     bottom: 20px;
     color: #fff;
     text-align: left;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 500;
     z-index: 4;
     padding: 0 20px;
@@ -134,7 +146,7 @@
 
 .text p {
     margin: 0;
-    font-size: 16px;
+    font-size: 1.2rem;
     line-height: 1.5;
     color: #565656;
 }
@@ -193,6 +205,86 @@
 
     .serviceSectionDivider {
         width: 4rem;
+    }
+}
+
+@media (max-width: 530px) {
+    .text-container {
+        margin: 0;
+    }
+
+    .text {
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .title-overlay {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-container {
+        margin: -5px;
+    }
+
+    .text {
+        height: auto;
+        padding: 1rem;
+    }
+
+    .title-overlay {
+        font-size: 1rem;
+        bottom: 40px;
+    }
+
+    .serviceSectionDivider {
+        width: 3rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .text-container {
+        margin-top: -50px;
+        height: auto;
+        padding: 2rem;
+    }
+
+    .title-overlay {
+        font-size: 1rem;
+        top: 65%;
+    }
+}
+
+@media (max-width: 1400px) {
+    .service {
+        flex-direction: column;
+    }
+
+    .image-container,
+    .text-container {
+        width: 100%;
+    }
+
+    .text-container {
+        margin-top: 1rem;
+    }
+
+    .text {
+        text-align: center;
+        align-items: center;
+        padding: 2rem;
+        border-radius: 20px;
+    }
+
+    .reversed .text-container {
+        margin-right: 0;
+        justify-content: center;
+    }
+
+    .reversed .text {
+        align-items: center;
+        text-align: center;
     }
 }
 

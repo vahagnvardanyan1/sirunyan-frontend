@@ -1,11 +1,9 @@
-/* Common Styles */
 .navList li,
 .mobileMenu ul li {
     transition: color 0.3s ease, transform 0.3s ease, border-bottom 0.3s ease;
     cursor: pointer;
 }
 
-/* Desktop Menu */
 .navList li:hover {
     color: #BAA588;
     transform: translateY(-2px);
@@ -25,9 +23,8 @@
     opacity: 1;
     transform: scaleX(0);
 }
-/* Mobile Menu */
 .mobileMenu ul li:hover {
-    color: #BAA588; /* Change text color on hover */
+    color: #BAA588;
 }
 
 .mobileMenu ul li:hover::after {
@@ -42,10 +39,10 @@
     clip-path: ellipse(50% 50% at 50% 50%);
 
     transition: all 0.3s ease;
-    opacity: 1; /* Ensure it is visible on hover */
+    opacity: 1;
 }
 
-/* Existing styles */
+
 .navbar {
     background-color: #fff;
     backdrop-filter: blur(10px);
@@ -76,14 +73,14 @@
     gap: 3.5rem;
     text-decoration: none;
     list-style: none;
-    position: relative; /* Ensure that pseudo-elements are positioned relative to the list items */
+    position: relative;
 }
 
 .navList li {
     font-family: "Montserrat Alternates", sans-serif;
     letter-spacing: 1px;
     font-size: 1.25rem;
-    position: relative; /* Position relative to allow pseudo-elements to be positioned absolutely */
+    position: relative;
 }
 
 .navbarCurve {
@@ -93,8 +90,8 @@
     transform: translateX(-50%);
     bottom: 0;
     background-color: #fff;
-    width: 20rem;
-    height: 5.5rem;
+    width: 22rem;
+    height: 6rem;
     border-radius: 0 0 100% 100% / 0 0 100% 100%;
     display: flex;
     justify-content: center;
@@ -238,7 +235,7 @@ nav a {
         color: #FFFFFF;
         font-family: "Montserrat Alternates", sans-serif;
         font-weight: 400;
-        position: relative; /* Ensure that pseudo-elements are positioned relative to the list items */
+        position: relative;
     }
 
     .mobileMenu ul li:hover::after {

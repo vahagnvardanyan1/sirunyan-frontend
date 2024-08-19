@@ -38,7 +38,7 @@ const services = [
     {
         image: img6,
         title: 'Animations',
-        description: 'Second phase of our comprehensive jewelry CAD services: 3D Modeling. After our initial sketching phase, we bring your jewelry designs to life with 3D modeling. Our skilled professionals create ready-to-print 3D models not only of jewelry pieces but also fashion accessories, ensuring every intricate detail is perfected before moving on to production.'
+        description: 'Jewelry animation services provide a dynamic way to showcase intricate designs and craftsmanship through animated visuals. By creating realistic 3D models and interactive presentations, these services help highlight the unique features and beauty of jewelry pieces, enhancing marketing and customer engagement. Ideal for online catalogs, promotional videos, and virtual try-ons, jewelry animation brings static designs to life, allowing clients to visualize and appreciate each piece in detail.'
     },
 ];
 

@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -8,79 +9,13 @@ import SwiperCore from 'swiper';
 import styles from '../css/portfolio.module.css';
 import seePhoto from '../assets/seeAt.png';
 import arrowDown from '../assets/select-down.svg';
-
-// MODELING
-import modelingImg1 from '../images/portfolio/Modeling/1.jpg';
-import modelingImg2 from '../images/portfolio/Modeling/2.jpg';
-import modelingImg3 from '../images/portfolio/Modeling/3.jpg';
-import modelingImg4 from '../images/portfolio/Modeling/4.jpg';
-import modelingImg6 from '../images/portfolio/Modeling/6.jpg';
-import modelingImg7 from '../images/portfolio/Modeling/7.jpg';
-import modelingImg8 from '../images/portfolio/Modeling/8.jpg';
-import modelingImg9 from '../images/portfolio/Modeling/9.jpg';
-import modelingImg10 from '../images/portfolio/Modeling/10.jpg';
-import modelingImg11 from '../images/portfolio/Modeling/11.jpg';
-import modelingImg12 from '../images/portfolio/Modeling/12.jpg';
-import modelingImg13 from '../images/portfolio/Modeling/13.jpg';
-import modelingImg14 from '../images/portfolio/Modeling/14.jpg';
-import modelingImg15 from '../images/portfolio/Modeling/15.jpg';
-
-// Renderings
-import renderImg1 from '../images/portfolio/Renderings/1.jpg';
-import renderImg2 from '../images/portfolio/Renderings/2.jpg';
-import renderImg3 from '../images/portfolio/Renderings/3.jpg';
-import renderImg4 from '../images/portfolio/Renderings/4.jpg';
-import renderImg6 from '../images/portfolio/Renderings/6.jpg';
-import renderImg7 from '../images/portfolio/Renderings/7.jpg';
-import renderImg8 from '../images/portfolio/Renderings/8.jpg';
-import renderImg9 from '../images/portfolio/Renderings/9.jpg';
-import renderImg10 from '../images/portfolio/Renderings/10.jpg';
-import renderIm11 from '../images/portfolio/Renderings/11.jpg';
-import renderImg12 from '../images/portfolio/Renderings/12.jpg';
-import renderImg13 from '../images/portfolio/Renderings/13.jpg';
-import renderImg14 from '../images/portfolio/Renderings/14.jpg';
-import renderImg15 from '../images/portfolio/Renderings/15.jpg';
-
-// Sculpting
-import sculptImg1 from '../images/portfolio/Sculpting/1.jpg';
-import sculptImg2 from '../images/portfolio/Sculpting/2.jpg';
-import sculptImg3 from '../images/portfolio/Sculpting/3.jpg';
-import sculptImg4 from '../images/portfolio/Sculpting/4.jpg';
-import sculptImg5 from '../images/portfolio/Sculpting/5.jpg';
-import sculptImg6 from '../images/portfolio/Sculpting/6.jpg';
-import sculptImg7 from '../images/portfolio/Sculpting/7.jpg';
-import sculptImg8 from '../images/portfolio/Sculpting/8.jpg';
-import sculptImg9 from '../images/portfolio/Sculpting/9.jpg';
-import {Grid, Navigation} from "swiper/modules";
-
-// Animations
-import animation1 from '../images/portfolio/Videos/1.mp4';
-import animation2 from '../images/portfolio/Videos/2.mp4';
-import animation3 from '../images/portfolio/Videos/3.mp4';
-
-// Rendering for Websites and SMM
-import smmImg1 from '../images/portfolio/Rendering for Websites and SMM/1.jpg';
-import smmImg2 from '../images/portfolio/Rendering for Websites and SMM/2.jpg';
-import smmImg3 from '../images/portfolio/Rendering for Websites and SMM/3.jpg';
-import smmImg4 from '../images/portfolio/Rendering for Websites and SMM/4.jpg';
-import smmImg5 from '../images/portfolio/Rendering for Websites and SMM/5.jpg';
-
-// Sketch
-import sketchImg1 from '../images/portfolio/Sketch/1.jpg';
-import sketchImg2 from '../images/portfolio/Sketch/2.jpg';
-import sketchImg3 from '../images/portfolio/Sketch/3.jpg';
-import sketchImg4 from '../images/portfolio/Sketch/4.png';
-import sketchImg5 from '../images/portfolio/Sketch/5.jpg';
-import sketchImg6 from '../images/portfolio/Sketch/6.png';
-import sketchImg7 from '../images/portfolio/Sketch/7.jpg';
-import sketchImg9 from '../images/portfolio/Sketch/9.jpg';
-import sketchImg10 from '../images/portfolio/Sketch/10.jpg';
-import sketchIm11 from '../images/portfolio/Sketch/11.png';
-import sketchImg12 from '../images/portfolio/Sketch/12.jpg';
+import { Grid, Navigation } from "swiper/modules";
 import LoadingAnimation from "../components/LoadingAnimation";
 
-
 SwiperCore.use([Grid, Navigation]);
+
+const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const REACT_APP_API_BASE_URL_IMAGES = process.env.REACT_APP_API_BASE_URL_IMAGES || 'http://localhost:3001';
 
 function Portfolio() {
     useEffect(() => {
@@ -95,84 +30,39 @@ function Portfolio() {
     const [selectedMedia, setSelectedMedia] = useState(null);
     const [loading, setLoading] = useState(true);
     const [loadedMedia, setLoadedMedia] = useState(0);
+    const [mediaData, setMediaData] = useState([]);
     const swiperRef = useRef(null);
 
     const categories = ['Sketching', '3D modeling', 'Sculpting', 'Rendering', 'Rendering & more for websites and smm', 'Animations'];
 
-    const imagesByCategory = {
-        'Sketching': [
-            sketchImg1,
-            sketchImg2,
-            sketchImg3,
-            sketchImg4,
-            sketchImg5,
-            sketchImg6,
-            sketchImg7,
-            sketchImg9,
-            sketchImg10,
-            sketchIm11,
-            sketchImg12,
-        ],
+    const categoryMapping = {
+        'Sketching': 'sketching',
+        '3D modeling': '3d-modeling',
+        'Sculpting': 'sculpting',
+        'Rendering': 'rendering',
+        'Rendering & more for websites and smm': 'rendering-more-for-websites-and-smm',
+        'Animations': 'animations'
+    };
 
-        '3D modeling': [
-            modelingImg1,
-            modelingImg2,
-            modelingImg3,
-            modelingImg4,
-            modelingImg10,
-            modelingImg12,
-            modelingImg14,
-            modelingImg6,
-            modelingImg7,
-            modelingImg8,
-            modelingImg9,
-            modelingImg11,
-            modelingImg13,
-            modelingImg15,
-        ],
-        'Sculpting': [
-            sculptImg1,
-            sculptImg2,
-            sculptImg3,
-            sculptImg4,
-            sculptImg5,
-            sculptImg6,
-            sculptImg7,
-            sculptImg8,
-            sculptImg9
-        ],
-        'Rendering': [
-            renderImg1,
-            renderImg2,
-            renderImg3,
-            renderImg4,
-            renderImg6,
-            renderImg7,
-            renderImg8,
-            renderImg9,
-            renderImg10,
-            renderIm11,
-            renderImg12,
-            renderImg13,
-            renderImg14,
-            renderImg15
-        ],
-        'Rendering & more for websites and smm': [
-            smmImg1,
-            smmImg2,
-            smmImg3,
-            smmImg4,
-            smmImg5,
-        ],
-        'Animations': [
-            animation1,
-            animation2,
-            animation3,
-        ],
+    const fetchCategoryData = async (category) => {
+        const backendCategory = categoryMapping[category];
+        try {
+            const response = await axios.get(`${REACT_APP_API_BASE_URL}/portfolio/${backendCategory}`);
+            setMediaData(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     };
 
     useEffect(() => {
-        const totalMedia = imagesByCategory[selectedCategory].length;
+        setLoading(true);
+        setLoadedMedia(0);
+        fetchCategoryData(selectedCategory);
+    }, [selectedCategory]);
+
+    useEffect(() => {
+        const totalMedia = mediaData.length;
         const loadingDelay = 2000;
 
         const timer = setTimeout(() => {
@@ -182,7 +72,7 @@ function Portfolio() {
         }, loadingDelay);
 
         return () => clearTimeout(timer);
-    }, [loadedMedia, selectedCategory, imagesByCategory]);
+    }, [loadedMedia, mediaData]);
 
     useEffect(() => {
         if (swiperRef.current) {
@@ -207,7 +97,10 @@ function Portfolio() {
     };
 
     const openModal = (media) => {
-        setSelectedMedia(media);
+        const mediaUrl = isVideo(media.filename)
+            ? `${REACT_APP_API_BASE_URL_IMAGES}/${media.filename}`
+            : `${REACT_APP_API_BASE_URL_IMAGES}/${media.filename}`;
+        setSelectedMedia(mediaUrl);
         setIsModalOpen(true);
     };
 
@@ -216,8 +109,11 @@ function Portfolio() {
         setSelectedMedia(null);
     };
 
-    const isVideo = (media) => {
-        return media.endsWith('.mp4');
+    const isVideo = (filename) => {
+        if (selectedCategory === 'Animations') {
+            return true;
+        }
+        return typeof filename === 'string' && filename.endsWith('.mp4');
     };
 
     return (
@@ -282,15 +178,15 @@ function Portfolio() {
                 }}
                 className={styles.categoriesContainer}
             >
-                {imagesByCategory[selectedCategory].map((media, index) => (
+                {mediaData?.data?.map((media, index) => (
                     <SwiperSlide
                         key={index}
                         className={`${styles.slideBlock} ${selectedCategory === 'Sketching' ? styles.sketching : ''}`}
                         onClick={() => openModal(media)}
                     >
-                        {isVideo(media) ? (
+                        {isVideo(media.filename) ? (
                             <video
-                                src={media}
+                                src={`${REACT_APP_API_BASE_URL_IMAGES}/${media.filename}`}
                                 className={styles.portfolioImage}
                                 autoPlay
                                 muted
@@ -300,7 +196,7 @@ function Portfolio() {
                             />
                         ) : (
                             <img
-                                src={media}
+                                src={`${REACT_APP_API_BASE_URL_IMAGES}/${media.filename}`}
                                 alt={`Portfolio ${index + 1}`}
                                 className={styles.portfolioImage}
                                 onLoad={handleMediaLoad}
