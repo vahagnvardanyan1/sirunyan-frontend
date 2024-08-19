@@ -87,7 +87,8 @@ function AboutUs() {
                     className={styles.ourTeamSlider}
                     breakpoints={{
                         320: {
-                            slidesPerView: 1.25,
+                            slidesPerView: 1,
+                            centeredSlides: true,
                             direction: 'horizontal',
                             spaceBetween: 10,
                         },
