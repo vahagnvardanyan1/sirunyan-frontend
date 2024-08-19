@@ -46,7 +46,7 @@
     overflow: hidden;
     z-index: 0;
     opacity: 0.8;
-    border-radius: 100px !important;
+    /*border-radius: 100px !important;*/
 
 }
 
@@ -299,7 +299,7 @@
         height: auto;
         position: absolute;
         left: 50%;
-        transform: translate(-40%, -50px);
+        transform: translate(-40%, -66px);
     }
     .slideImage img{
        width: 100px;
