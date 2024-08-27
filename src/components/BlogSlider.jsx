@@ -52,7 +52,7 @@ const BlogSlider = () => {
         slidesToScroll: 1,
         initialSlide: 0,
         afterChange: (current) => setCurrentSlide(current),
-        nextArrow: <NextArrow currentSlide={currentSlide} blogsLength={blogs.length} slidesToShow={slidesToShow} />,
+        nextArrow: <NextArrow currentSlide={currentSlide} blogsLength={blogs?.length} slidesToShow={slidesToShow} />,
         prevArrow: <PrevArrow currentSlide={currentSlide} />
     };
 
