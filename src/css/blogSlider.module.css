@@ -3,7 +3,6 @@
     margin: 0 auto;
     position: relative;
     margin-top: 1rem;
-
 }
 
 .nextArrow,
@@ -12,6 +11,8 @@
     top: -2.5rem;
     cursor: pointer;
     z-index: 2;
+    transition: all 0.3s ease;
+    transform: scale(1);
 }
 
 .nextArrow {
@@ -26,12 +27,18 @@
 
 .prevArrow {
     right: 6rem;
-    border: 1px solid #BEB7AA;
+    border: 1px solid #574B44;
     padding: 0.5rem;
-    width: 3rem;
+    width: 4rem;
     border-radius: 30px;
     text-align: center;
-    color: #BEB7AA;
+    color: #574B44;
+}
+
+.inactive {
+    opacity: 0.5;
+    transform: scale(0.8);
+    pointer-events: none;
 }
 
 .blogSlide {
@@ -84,7 +91,6 @@
 }
 
 @media (max-width: 768px) {
-
     .nextArrow,
     .prevArrow {
         top: -7%

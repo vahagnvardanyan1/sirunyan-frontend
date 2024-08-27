@@ -8,10 +8,12 @@
     margin-top: 3rem;
     position: relative;
     font-family: "Montserrat Alternates", sans-serif;
+    gap: 20px;
 }
 
 .reversed {
     flex-direction: row-reverse;
+    gap: 20px;
 }
 
 .image-container {
@@ -66,9 +68,9 @@
 .title-overlay {
     position: absolute;
     bottom: 20px;
-    color: #fff;
+    color: #565656;
     text-align: left;
-    font-size: 1.4rem;
+    font-size: 2rem;
     font-weight: 500;
     z-index: 4;
     padding: 0 20px;
@@ -88,20 +90,19 @@
 .serviceSectionDivider {
     width: 5rem;
     height: 3px;
-    background: #fff;
+    background: #565656;
     clip-path: ellipse(50% 50% at 50% 50%);
     border: none;
     margin-top: 5px;
 }
 
-
 .left .serviceSectionDivider {
     margin-left: 0;
-    margin-right: auto; /* Push the divider to the left */
+    margin-right: auto;
 }
 
 .right .serviceSectionDivider {
-    margin-left: auto; /* Push the divider to the right */
+    margin-left: auto;
     margin-right: 0;
 }
 
@@ -153,6 +154,7 @@
 
 .container {
     padding: 20px;
+    transform: translateY(-130px);
 }
 
 @media (max-width: 768px) {
@@ -169,6 +171,7 @@
     .service {
         flex-direction: column;
         margin-top: 1rem;
+        gap: 10px;
     }
 
     .reversed {
@@ -201,10 +204,13 @@
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
+        font-size: 1.8rem;
+        bottom: 10px;
     }
 
     .serviceSectionDivider {
         width: 4rem;
+        margin-top: 10px;
     }
 }
 
@@ -219,7 +225,8 @@
     }
 
     .title-overlay {
-        font-size: 1rem;
+        font-size: 1.6rem;
+        bottom: 20px;
     }
 }
 
@@ -234,12 +241,15 @@
     }
 
     .title-overlay {
-        font-size: 1rem;
-        bottom: 40px;
+        font-size: 1.4rem;
+        bottom: 5px;
     }
 
     .serviceSectionDivider {
-        width: 3rem;
+      display: none;
+    }
+    .image img{
+        background-position: 10px;
     }
 }
 
@@ -251,87 +261,8 @@
     }
 
     .title-overlay {
-        font-size: 1rem;
-        top: 65%;
-    }
-}
-
-@media (max-width: 1400px) {
-    .service {
-        flex-direction: column;
-    }
-
-    .image-container,
-    .text-container {
-        width: 100%;
-    }
-
-    .text-container {
-        margin-top: 1rem;
-    }
-
-    .text {
-        text-align: center;
-        align-items: center;
-        padding: 2rem;
-        border-radius: 20px;
-    }
-
-    .reversed .text-container {
-        margin-right: 0;
-        justify-content: center;
-    }
-
-    .reversed .text {
-        align-items: center;
-        text-align: center;
-    }
-}
-
-@media (max-width: 530px) {
-    .text-container {
-        margin: 0;
-    }
-
-    .text {
-        padding: 1rem;
-        border-radius: 8px;
-    }
-
-    .title-overlay {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .text-container {
-        margin: -5px;
-    }
-
-    .text {
-        height: auto;
-        padding: 1rem;
-    }
-
-    .title-overlay {
-        font-size: 1rem;
-        bottom: 40px;
-    }
-
-    .serviceSectionDivider {
-        width: 3rem;
-    }
-}
-
-@media (max-width: 360px) {
-    .text-container {
-        margin-top: -50px;
-        height: auto;
-        padding: 2rem;
-    }
-
-    .title-overlay {
-        font-size: 1rem;
-        top: 65%;
+        font-size: 1.2rem;
+        top: auto;
+        bottom: -20px;
     }
 }

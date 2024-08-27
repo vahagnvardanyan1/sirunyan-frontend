@@ -18,8 +18,12 @@ const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const REACT_APP_API_BASE_URL_IMAGES = process.env.REACT_APP_API_BASE_URL_IMAGES || 'http://localhost:3001';
 
 function Portfolio() {
+    const categoriesRef = useRef(null);
+
     useEffect(() => {
-        window.scrollTo(0, 0);
+        if (categoriesRef.current) {
+            categoriesRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
     }, []);
 
     const location = useLocation();
@@ -33,14 +37,14 @@ function Portfolio() {
     const [mediaData, setMediaData] = useState([]);
     const swiperRef = useRef(null);
 
-    const categories = ['Sketching', '3D modeling', 'Sculpting', 'Rendering', 'Rendering & more for websites and smm', 'Animations'];
+    const categories = ['Sketching', '3D modeling', 'Sculpting', 'Rendering', 'Rendering & More for Websites and smm', 'Animations'];
 
     const categoryMapping = {
         'Sketching': 'sketching',
         '3D modeling': '3d-modeling',
         'Sculpting': 'sculpting',
         'Rendering': 'rendering',
-        'Rendering & more for websites and smm': 'rendering-more-for-websites-and-smm',
+        'Rendering & More for Websites and smm': 'rendering-more-for-websites-and-smm',
         'Animations': 'animations'
     };
 
@@ -123,7 +127,7 @@ function Portfolio() {
                     <LoadingAnimation />
                 </div>
             )}
-            <div className={styles.categories}>
+            <div className={styles.categories} ref={categoriesRef}>
                 {categories.map((category) => (
                     <span
                         key={category}
@@ -168,7 +172,7 @@ function Portfolio() {
                     },
                     1024: {
                         slidesPerView: 3,
-                        grid: { rows: 2 },
+                        grid: { rows: 1 },
                     },
                 }}
                 spaceBetween={20}
@@ -182,6 +186,7 @@ function Portfolio() {
                     <SwiperSlide
                         key={index}
                         className={`${styles.slideBlock} ${selectedCategory === 'Sketching' ? styles.sketching : ''}`}
+                        style={{ gridRow: (index % 3) + 1, gridColumn: Math.floor(index / 3) + 1 }}
                         onClick={() => openModal(media)}
                     >
                         {isVideo(media.filename) ? (
@@ -208,6 +213,7 @@ function Portfolio() {
                     </SwiperSlide>
                 ))}
             </Swiper>
+
 
             <div className={styles.sliderControls}>
                 <button className={`swiper-button-prev-unique ${styles.left}`}>←</button>

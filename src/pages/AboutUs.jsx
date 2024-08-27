@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import styles from '../css/aboutus.module.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,11 +15,9 @@ function AboutUs() {
     const [loading, setLoading] = useState(true);
     const [teamMembers, setTeamMembers] = useState([]);
     const [footerSlides, setFooterSlides] = useState([]);
+    const aboutUsRef = useRef(null);
 
-    console.log(teamMembers)
     useEffect(() => {
-        window.scrollTo(0, 0);
-
         const fetchData = async () => {
             try {
                 const [teamMembersResponse, footerSlidesResponse] = await Promise.all([
@@ -39,6 +37,15 @@ function AboutUs() {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        if (!loading && aboutUsRef.current) {
+            // Use a timeout to ensure the DOM is fully rendered before scrolling
+            setTimeout(() => {
+                aboutUsRef.current.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    }, [loading]);
+
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
@@ -50,15 +57,15 @@ function AboutUs() {
     return (
         <div className={styles.about}>
             <div className={styles.servicesContent}>
-                <p>About Us</p>
+                <p ref={aboutUsRef}>About Us</p>
                 <hr className={styles.aboutSectionDivider} />
             </div>
             <div className={styles.aboutSubtitle}>
                 <p className={styles.firstSubtitle}>Hi, so good to see you here!</p>
             </div>
             <div className={styles.aboutusContent}>
-                <p>Welcome to Sirunyan Jewelry and Accessories CAD Studio, where the elegance of traditional jewelry
-                    design meets the precision of modern digital technology. At Sirunyan, we specialize in providing
+                <p>Welcome to “Sirunyan Jewelry and Accessories CAD Studio”, where we keep our finger on the pulse of the latest trends while blending the
+                    elegance of traditional jewelry design with the precision of modern digital technology. At Sirunyan, we specialize in providing
                     computer-aided design (CAD) services tailored specifically for the jewelry and accessories industry.
                     Our expertise lies in transforming and beautifying creative visions into detailed digital
                     blueprints, ensuring each piece is crafted with the highest level of accuracy, beauty and care. Our
@@ -140,19 +147,19 @@ function AboutUs() {
                     }}
                 >
                     {teamMembers?.data?.map((member, index) => (
-                    <SwiperSlide key={index}>
-                        <div className={styles.slideContent}>
-                            <img src={`${REACT_APP_API_BASE_URL_IMAGES}/${member.image}`} alt={member.fullName} />
-                            <div className={styles.textOverlay}>
-                                <p>{member.content}</p>
+                        <SwiperSlide key={index}>
+                            <div className={styles.slideContent}>
+                                <img src={`${REACT_APP_API_BASE_URL_IMAGES}/${member.image}`} alt={member.fullName} />
+                                <div className={styles.textOverlay}>
+                                    <p>{member.content}</p>
+                                </div>
+                                <div className={styles.memberInfo}>
+                                    <span className={styles.name}>{member.fullName}</span>
+                                    <span className={styles.role}>{member.role}</span>
+                                </div>
                             </div>
-                            <div className={styles.memberInfo}>
-                                <span className={styles.name}>{member.fullName}</span>
-                                <span className={styles.role}>{member.role}</span>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                ))}
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
             </div>
             <div className={styles.whatWeDo}>

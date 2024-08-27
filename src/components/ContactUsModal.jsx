@@ -6,9 +6,6 @@ import styles from '../css/contactUs.module.css';
 import phone from '../assets/phone.png';
 import message from '../assets/message.png';
 import location from '../assets/location.png';
-// import instagram from '../assets/Instagram.png';
-// import discord from '../assets/Discord.png';
-// import twitter from '../assets/twitter.png';
 import ring from '../assets/ring.png';
 import letterSend from '../assets/letter_send 1.png';
 import closeBtn from '../assets/closeBtn.svg';
@@ -17,9 +14,7 @@ import linkedIn from "../assets/linkedIn.jpg";
 function ContactUsModal({ isOpen, onClose }) {
     const [formData, setFormData] = useState({
         firstName: '',
-        lastName: '',
         email: '',
-        phone: '',
         service: [],
         message: '',
     });
@@ -53,7 +48,7 @@ function ContactUsModal({ isOpen, onClose }) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const { firstName, lastName, email, phone, service, message } = formData;
+        const { firstName, email, service, message } = formData;
 
         if (!email || !message) {
             toast.error('Please fill in your email and message.');
@@ -63,9 +58,8 @@ function ContactUsModal({ isOpen, onClose }) {
         const serviceList = service.join(', ');
 
         const templateParams = {
-            from_name: `${firstName} ${lastName}`,
+            from_name: `${firstName} `,
             email,
-            phone,
             service: serviceList,
             message,
         };
@@ -79,7 +73,7 @@ function ContactUsModal({ isOpen, onClose }) {
             .then((response) => {
                 console.log('SUCCESS!', response.status, response.text);
                 toast.success('Your message has been sent successfully!');
-                setFormData({ firstName: '', lastName: '', email: '', phone: '', service: [], message: '' });
+                setFormData({ firstName: '', email: '',  service: [], message: '' });
             })
             .catch((err) => {
                 console.error('FAILED...', err);
@@ -137,60 +131,39 @@ function ContactUsModal({ isOpen, onClose }) {
 
                 <div className={styles.contactForm}>
                     <form onSubmit={handleSubmit}>
-                        <div className={styles.formRow}>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="firstName">First Name</label>
-                                <input
-                                    id="firstName"
-                                    className={styles.inputField}
-                                    type="text"
-                                    placeholder=""
-                                    name="firstName"
-                                    value={formData.firstName}
-                                    onChange={handleChange}
-                                />
+                        <div className={styles.personalInfoContainer}>
+                            <div className={styles.formRow}>
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="firstName">Name</label>
+                                    <input
+                                        id="firstName"
+                                        className={styles.inputField}
+                                        type="text"
+                                        placeholder=""
+                                        name="firstName"
+                                        value={formData.firstName}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="lastName">Last Name</label>
-                                <input
-                                    id="lastName"
-                                    className={styles.inputField}
-                                    type="text"
-                                    placeholder=""
-                                    name="lastName"
-                                    value={formData.lastName}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-                        <div className={styles.formRow}>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="email">Email</label>
-                                <input
-                                    id="email"
-                                    className={styles.inputField}
-                                    type="email"
-                                    placeholder=""
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="phone">Phone Number</label>
-                                <input
-                                    id="phone"
-                                    className={styles.inputField}
-                                    type="tel"
-                                    placeholder=""
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                />
+                            <div className={styles.formRow}>
+                                <div className={styles.formGroup}>
+                                    <label htmlFor="email">Email</label>
+                                    <input
+                                        id="email"
+                                        className={styles.inputField}
+                                        type="email"
+                                        placeholder=""
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
                         </div>
+
                         <div className={styles.SelectFormGroup}>
-                            <div className={styles.formgroupTitle}>Select Service?</div>
+                            <div className={styles.formgroupTitle}>Select Subject</div>
                             <div className={styles.checkbox}>
                                 <label>
                                     <input
@@ -207,34 +180,23 @@ function ContactUsModal({ isOpen, onClose }) {
                                     <input
                                         type="checkbox"
                                         name="service"
-                                        value="modeling"
-                                        checked={formData.service.includes('modeling')}
-                                        onChange={handleChange}
-                                    />
-                                    <span className={styles.customCheckbox}></span>
-                                    3D Modeling
-                                </label>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="service"
-                                        value="sculpting"
-                                        checked={formData.service.includes('sculpting')}
-                                        onChange={handleChange}
-                                    />
-                                    <span className={styles.customCheckbox}></span>
-                                    Sculpting
-                                </label>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="service"
                                         value="rendering"
                                         checked={formData.service.includes('rendering')}
                                         onChange={handleChange}
                                     />
                                     <span className={styles.customCheckbox}></span>
                                     Rendering
+                                </label>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="service"
+                                        value="modeling"
+                                        checked={formData.service.includes('modeling')}
+                                        onChange={handleChange}
+                                    />
+                                    <span className={styles.customCheckbox}></span>
+                                    3D Modeling
                                 </label>
                                 <label>
                                     <input
@@ -247,6 +209,19 @@ function ContactUsModal({ isOpen, onClose }) {
                                     <span className={styles.customCheckbox}></span>
                                     Rendering for Websites and SMM
                                 </label>
+
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="service"
+                                        value="sculpting"
+                                        checked={formData.service.includes('sculpting')}
+                                        onChange={handleChange}
+                                    />
+                                    <span className={styles.customCheckbox}></span>
+                                    Sculpting
+                                </label>
+
                                 <label>
                                     <input
                                         type="checkbox"

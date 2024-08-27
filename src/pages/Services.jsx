@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from '../css/services.module.css';
 import ServicesItem from '../components/ServicesItem';
 import img1 from '../images/Services/servicesImg1.jpg';
@@ -32,7 +32,7 @@ const services = [
     },
     {
         image: img5,
-        title: 'Rendering & more for websites and smm',
+        title: 'Rendering & More for Websites and smm',
         description: 'Tailored for social media marketing and website use, our rendering services create photorealistic images in digital studios that capture and highlight every intricate detail of your jewelry and accessories. These striking visuals elevate your brand’s digital presence, making your designs stand out and engage your audience with aesthetics and elegance.'
     },
     {
@@ -43,11 +43,22 @@ const services = [
 ];
 
 function Services() {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const serviceRefs = useRef([]);
+
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
 
-    const navigate = useNavigate();
+        if (location.state?.category) {
+            const category = location.state.category;
+            const index = services.findIndex(service => service.title === category);
+            if (index !== -1 && serviceRefs.current[index]) {
+                serviceRefs.current[index].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, [location.state]);
 
     const handleImageClick = (category) => {
         navigate('/portfolio', { state: { category } });
@@ -56,14 +67,18 @@ function Services() {
     return (
         <div className={styles.container}>
             {services.map((service, index) => (
-                <ServicesItem
+                <div
+                    ref={el => serviceRefs.current[index] = el}
                     key={index}
-                    image={service.image}
-                    title={service.title}
-                    description={service.description}
-                    isReversed={index % 2 !== 0}
-                    onClick={() => handleImageClick(service.title)}
-                />
+                >
+                    <ServicesItem
+                        image={service.image}
+                        title={service.title}
+                        description={service.description}
+                        isReversed={index % 2 !== 0}
+                        onClick={() => handleImageClick(service.title)}
+                    />
+                </div>
             ))}
         </div>
     );

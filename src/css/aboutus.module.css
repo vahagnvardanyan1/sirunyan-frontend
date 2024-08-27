@@ -5,6 +5,7 @@
     align-items: center;
     font-family: "Montserrat Alternates", sans-serif;
     padding: 0 1rem;
+    transform: translateY(-100px);
 }
 
 /* Loading container styling */

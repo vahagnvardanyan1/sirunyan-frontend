@@ -176,12 +176,14 @@
     border-bottom: 1px solid #fff;
     background: transparent;
     color: #fff;
-    font-size: 1rem; /* Adjusted font size */
+    font-size: 1rem;
 }
-
+.personalInfoContainer {
+    display: flex;
+}
 .textArea {
     width: 93%;
-    padding-top: 1rem;
+    padding: 1rem 1rem 0 ;
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
@@ -189,9 +191,8 @@
     outline: none;
     color: #fff;
     box-sizing: border-box;
-    font-size: 1rem; /* Adjusted font size */
+    font-size: 1rem;
     font-family: "Montserrat Alternates", sans-serif;
-    padding: 15px;
 }
 
 .textFormGroup label {
@@ -199,6 +200,10 @@
     font-weight: 500;
     font-size: 1rem;
     padding: 15px;
+}
+.textFormGroup  {
+    transform: translate(10px, 40px);
+
 }
 
 .textArea::placeholder {
@@ -231,7 +236,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 99%;
+    width: 80%;
     gap: 1rem;
     font-size: 1rem;
 }
@@ -242,6 +247,61 @@
     height: 15px;
     border-radius: 5px;
     vertical-align: sub;
+}
+.checkbox label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: "Montserrat Alternates", sans-serif;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.checkbox input {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+}
+
+.checkbox .customCheckbox {
+    width: 18px;
+    height: 18px;
+    background-color: #EFE6DF;
+    border-radius: 5px;
+    border: 2px solid #BAA588;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.checkbox input:checked + .customCheckbox {
+    background-color: #BAA588;
+    border-color: #BAA588;
+}
+
+.checkbox .customCheckbox::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    display: block;
+    background-color: white;
+    border-radius: 3px;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s ease-in-out;
+}
+
+.checkbox input:checked + .customCheckbox::after {
+    opacity: 1;
+    transform: scale(1);
 }
 
 input[type="radio"] {
@@ -439,6 +499,12 @@ input[type="radio"] {
         height: 30px;
         border-radius: 50%;
     }
+    .textFormGroup {
+        transform: translate(0);
+    }
+    .contactTitles {
+        margin-bottom: 2rem;
+    }
 }
 
 @media (min-width: 768px) {
@@ -469,7 +535,8 @@ input[type="radio"] {
     }
 
     .textArea {
-        padding-bottom: 2.5rem;
+        /*padding-bottom: 2.5rem;*/
+        transform: translate(0);
     }
 }
 
@@ -486,6 +553,40 @@ input[type="radio"] {
     }
 
     .textArea {
-        padding-bottom: 2.5rem;
+        /*padding-bottom: 2.5rem;*/
+    }
+}
+
+
+.personalInfoContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.formGroup {
+    flex: 1;
+    width: 100%;
+}
+
+.inputField {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .personalInfoContainer {
+        flex-direction: column;
+    }
+
+    .inputField {
+        padding: 1.2rem 1rem;
+        font-size: 1.1rem;
+    }
+
+    .formGroup {
+        margin-bottom: 1rem;
     }
 }

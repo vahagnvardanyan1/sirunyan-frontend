@@ -110,10 +110,19 @@ function Navbar({ isModalOpen, openModal }) {
             {menuOpen && (
                 <div className={styles.mobileMenu}>
                     <ul>
-                        <li><NavLink to="/service" onClick={closeMenu}>Service</NavLink></li>
+                        <li><NavLink to="/service" onClick={closeMenu}>Services</NavLink></li>
                         <li><NavLink to="/portfolio" onClick={closeMenu}>Portfolio</NavLink></li>
                         <li><NavLink to="/about" onClick={closeMenu}>About Us</NavLink></li>
-                        <li><a onClick={() => { handleOpenModal(); closeMenu(); }}>Contact Us</a></li>
+                        <li><a onClick={() => {
+                            handleOpenModal();
+                            closeMenu();
+                        }}>Contact Us</a></li>
+                        <li className={location.pathname === '/blog' ? styles.active : ''}>
+                            <a onClick={() => {
+                                closeMenu();
+                                scrollToBlogSection();
+                            }}>Blog</a>
+                        </li>
                     </ul>
                 </div>
             )}

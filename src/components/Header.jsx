@@ -60,7 +60,7 @@ function Header({ openModal }) {
             type: 'image',
             src: servicesBanner,
             alt: 'Services Banner',
-            title: 'The Art of Beautifying Through Digital Expertise',
+            title: 'The beautiful language of your imagination',
             showButton: true,
         },
         '/about': {

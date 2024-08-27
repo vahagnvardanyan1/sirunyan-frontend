@@ -10,33 +10,31 @@ import serviceBg4 from '../images/home/serviceBg4.png';
 import serviceBg5 from '../images/home/servicesBg5.png';
 import serviceBg6 from '../images/home/serviceBg6.png';
 
-
 const services = [
     { title: 'Sketching', img: serviceBg1, className: 'lowered' },
     { title: '3D modeling', img: serviceBg2, className: 'lowered' },
     { title: 'Sculpting', img: serviceBg3, className: 'bigger' },
     { title: 'Rendering', img: serviceBg4, className: 'lowered' },
-    { title: 'Rendering & more for Websites and Smm', img: serviceBg5 },
+    { title: 'Rendering & More for Websites and smm', img: serviceBg5 },
     { title: 'Animations', img: serviceBg6 },
 ];
-
-
 
 function Home() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
     return (
         <div className={styles.home}>
             <section id={styles.services}>
                 <div className={styles.servicesContent}>
-                    <p>Services</p>
+                    <p className={styles.serviceFirstTitle}>Services</p>
                     <hr className={styles.homeSectionDivider} />
                 </div>
                 <div className={styles.servicesContainer}>
                     {services.map((service, index) => (
                         <div className={styles.serviceCategories} key={index}>
-                            <NavLink to="/portfolio" state={{category: service.title}}>
+                            <NavLink to="/service" state={{ category: service.title }}>
                                 <div className={styles.imageContainer}>
                                     <img
                                         src={service.img}
@@ -56,7 +54,7 @@ function Home() {
             </section>
             <section id={styles.portfolio}>
                 <div className={styles.servicesContent}>
-                    <p>From Idea to Visualisation</p>
+                    <p>From Idea to Visualization</p>
                     <hr className={styles.homeSectionDivider}/>
                 </div>
                 <PortfolioSlider/>
