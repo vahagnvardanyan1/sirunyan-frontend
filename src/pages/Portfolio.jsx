@@ -169,9 +169,13 @@ function Portfolio() {
                     fill: 'row',
                 }}
                 breakpoints={{
+                    375: {
+                        slidesPerView: 1,
+                        grid: { rows: 7 },
+                    },
                     480: {
                         slidesPerView: 1,
-                        grid: { rows: 1 },
+                        grid: { rows: 3 },
                     },
                     768: {
                         slidesPerView: 2,
