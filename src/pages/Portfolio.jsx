@@ -37,14 +37,14 @@ function Portfolio() {
     const [mediaData, setMediaData] = useState([]);
     const swiperRef = useRef(null);
 
-    const categories = ['Sketching', '3D modeling', 'Sculpting', 'Rendering', 'Rendering & More for Websites and smm', 'Animations'];
+    const categories = ['Sketching', '3D modeling', 'Sculpting', 'Rendering', 'Rendering & More for Websites and SMM', 'Animations'];
 
     const categoryMapping = {
         'Sketching': 'sketching',
         '3D modeling': '3d-modeling',
         'Sculpting': 'sculpting',
         'Rendering': 'rendering',
-        'Rendering & More for Websites and smm': 'rendering-more-for-websites-and-smm',
+        'Rendering & More for Websites and SMM': 'rendering-more-for-websites-and-smm',
         'Animations': 'animations'
     };
 
@@ -89,10 +89,14 @@ function Portfolio() {
     };
 
     const handleCategoryClick = (category) => {
+        if (category === selectedCategory) {
+            return;
+        }
         setSelectedCategory(category);
         setLoading(true);
         setLoadedMedia(0);
     };
+
 
     const handleSelectChange = (event) => {
         setSelectedCategory(event.target.value);
@@ -119,6 +123,9 @@ function Portfolio() {
         }
         return typeof filename === 'string' && filename.endsWith('.mp4');
     };
+
+
+
 
     return (
         <div className={styles.portfolio}>
@@ -196,9 +203,12 @@ function Portfolio() {
                                 autoPlay
                                 muted
                                 loop
-                                onLoadedData={handleMediaLoad}
+                                playsInline
                                 controls={false}
+                                controlsList="nodownload nofullscreen noremoteplayback"
+                                onLoadedData={handleMediaLoad}
                             />
+
                         ) : (
                             <img
                                 src={`${REACT_APP_API_BASE_URL_IMAGES}/${media.filename}`}

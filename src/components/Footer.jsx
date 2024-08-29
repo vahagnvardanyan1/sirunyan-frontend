@@ -1,16 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from '../css/footer.module.css';
 import logo from '../assets/logo.png';
-// import twitter from '../assets/twitter.png';
 import linkedIn from '../assets/linkedIn.jpg';
-// import instagram from '../assets/Instagram.png';
-// import discord from '../assets/Discord.png';
-import {Link, useLocation, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 function Footer({ openModal }) {
-    const [scrolled, setScrolled] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
-    const location = useLocation();
     const navigate = useNavigate();
 
     const scrollToBlogSection = () => {
@@ -33,7 +27,7 @@ function Footer({ openModal }) {
                     <button className={styles.contactButton} onClick={openModal}>Contact Us</button>
                 </div>
                 <div className={styles.footerBottom}>
-                    <p>© 2024 FriendTech, LLC</p>
+                    <a className={styles.link} target="_blank" href="https://www.facebook.com/profile.php?id=61560778410260&mibextid=JRoKGi">© 2024 FriendTech LLC</a>
                 </div>
                 <div className={styles.line}></div>
                 <div className={styles.footerContainer}>

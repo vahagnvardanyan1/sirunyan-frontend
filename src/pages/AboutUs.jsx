@@ -164,7 +164,7 @@ function AboutUs() {
             </div>
             <div className={styles.whatWeDo}>
                 <div className={styles.title}>
-                    <p>What Makes Us Love What We Do</p>
+                    <p>What Makes Us Love What We Do ?</p>
                     <hr className={styles.aboutSectionDivider} />
                 </div>
                 <div className={styles.whatWeDoContent}>

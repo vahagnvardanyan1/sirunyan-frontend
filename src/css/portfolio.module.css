@@ -66,24 +66,23 @@
 .categoryTag {
     margin-top: 3rem;
     position: relative;
-    border-radius: 0.4em;
+    border-radius: 3em;
     background: transparent;
     width: auto;
-    padding: 0 1rem;
-    height: auto;
     padding: 1rem;
-    color: #F0E7E0;
+    color: #777168;
     border: 1px solid transparent;
     background-clip: padding-box;
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #777168;
     font-size: 1rem;
     font-family: "Montserrat Alternates", sans-serif;
     font-weight: 400;
     cursor: pointer;
+    overflow: hidden;
+    transition: color 0.3s ease;
 }
 
 .categoryTag::before {
@@ -104,10 +103,39 @@
     z-index: -1;
 }
 
+.categoryTag::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 100%;
+    bottom: 2px;
+    border-radius: 100px;
+    background-color: #E1DACF;
+    z-index: -1;
+    transition: right 0.4s ease;
+    overflow: hidden;
+}
+
+.categoryTag:hover::after {
+    right: 0;
+}
+
+.categoryTag:hover {
+    color: #555555;
+}
+
 .categoryTag.active {
     background-color: #E1DACF;
     color: #555555;
     border-radius: 50px;
+    pointer-events: none;
+}
+.categoryTag:hover:not(.active)::after {
+    right: 0;
+}
+.categoryTag:hover:not(.active) {
+    color: #555555;
 }
 
 .categorySelect {
@@ -204,7 +232,6 @@
     width: 4rem;
     border-radius: 50%;
     padding: 1rem 1rem;
-    background-color: #FFF2D7;
     background: #fff2d794;
     font-family: "Montserrat Alternates", sans-serif;
     font-size: 1rem;

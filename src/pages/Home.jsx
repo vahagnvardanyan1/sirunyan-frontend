@@ -15,7 +15,7 @@ const services = [
     { title: '3D modeling', img: serviceBg2, className: 'lowered' },
     { title: 'Sculpting', img: serviceBg3, className: 'bigger' },
     { title: 'Rendering', img: serviceBg4, className: 'lowered' },
-    { title: 'Rendering & More for Websites and smm', img: serviceBg5 },
+    { title: 'Rendering & More for Websites and SMM', img: serviceBg5 },
     { title: 'Animations', img: serviceBg6 },
 ];
 

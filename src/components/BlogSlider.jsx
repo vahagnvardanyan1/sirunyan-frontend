@@ -35,7 +35,7 @@ const BlogSlider = () => {
         };
 
         window.addEventListener('resize', updateSlidesToShow);
-        updateSlidesToShow(); // Initial check
+        updateSlidesToShow();
 
         return () => window.removeEventListener('resize', updateSlidesToShow);
     }, []);

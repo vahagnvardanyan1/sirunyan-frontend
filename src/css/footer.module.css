@@ -13,7 +13,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
     z-index: 1000;
 }
 
@@ -101,8 +100,9 @@
     width: 9rem;
 }
 
-.footerBbottom {
+.footerBottom {
     margin-top: 3rem;
+    margin-bottom: 1rem;
 }
 
 .footerBottom p {
@@ -166,6 +166,27 @@
     width: 78%;
     height: 1px;
     background-color: #0A142F;
+}
+.link {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.link:hover {
+    color: #007bff;
+    transform: scale(1.05);
+    text-decoration: underline;
+}
+
+.link:active {
+    color: #0056b3;
+    transform: scale(1);
+}
+
+.link:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #0056b3;
 }
 
 /* Media Queries */

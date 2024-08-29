@@ -32,7 +32,7 @@ const services = [
     },
     {
         image: img5,
-        title: 'Rendering & More for Websites and smm',
+        title: 'Rendering & More for Websites and SMM',
         description: 'Tailored for social media marketing and website use, our rendering services create photorealistic images in digital studios that capture and highlight every intricate detail of your jewelry and accessories. These striking visuals elevate your brand’s digital presence, making your designs stand out and engage your audience with aesthetics and elegance.'
     },
     {
@@ -55,7 +55,11 @@ function Services() {
             const category = location.state.category;
             const index = services.findIndex(service => service.title === category);
             if (index !== -1 && serviceRefs.current[index]) {
-                serviceRefs.current[index].scrollIntoView({ behavior: 'smooth' });
+                serviceRefs.current[index].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',  // Ensures the item is centered vertically
+                    inline: 'nearest' // Ensures the item is centered horizontally if needed
+                });
             }
         }
     }, [location.state]);
