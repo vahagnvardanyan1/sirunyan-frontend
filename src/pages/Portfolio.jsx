@@ -169,10 +169,6 @@ function Portfolio() {
                     fill: 'row',
                 }}
                 breakpoints={{
-                    375: {
-                        slidesPerView: 1,
-                        grid: { rows: 7 },
-                    },
                     480: {
                         slidesPerView: 1,
                         grid: { rows: 3 },
@@ -231,7 +227,6 @@ function Portfolio() {
 
             <div className={styles.sliderControls}>
                 <button className={`swiper-button-prev-unique ${styles.left}`}>←</button>
-                <button className={styles.viewMoreButton}>View More</button>
                 <button className={`swiper-button-next-unique ${styles.rightBtn}`}>→</button>
             </div>
 
