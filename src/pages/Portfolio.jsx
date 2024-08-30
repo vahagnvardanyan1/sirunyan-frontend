@@ -191,6 +191,7 @@ function Portfolio() {
                     prevEl: '.swiper-button-prev-unique',
                     nextEl: '.swiper-button-next-unique',
                 }}
+                loop={true}
                 className={styles.categoriesContainer}
             >
                 {mediaData?.data?.map((media, index) => (
