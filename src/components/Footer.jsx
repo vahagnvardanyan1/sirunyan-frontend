@@ -23,7 +23,7 @@ function Footer({ openModal }) {
             <footer className={styles.footer}>
                 <div className={styles.footerContent}>
                     <h2>Request More Information</h2>
-                    <p>Welcome to SIRUNYAN CAD Studio, where artistry meets technology to create breathtaking jewelry designs.</p>
+                    <p>Welcome to SIRUNYAN Jewelry & Accessories CAD Studio, where artistry meets technology to create breathtaking jewelry designs.</p>
                     <button className={styles.contactButton} onClick={openModal}>Contact Us</button>
                 </div>
                 <div className={styles.footerBottom}>
