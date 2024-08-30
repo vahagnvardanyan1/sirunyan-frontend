@@ -2,17 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/grid';
-import 'swiper/css/navigation';
 import SwiperCore from 'swiper';
 import styles from '../css/portfolio.module.css';
 import seePhoto from '../assets/seeAt.png';
 import arrowDown from '../assets/select-down.svg';
-import { Grid, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import LoadingAnimation from "../components/LoadingAnimation";
-
-SwiperCore.use([Grid, Navigation]);
+import 'swiper/css';
+import 'swiper/css/grid';
+import 'swiper/css/navigation';
+SwiperCore.use([Navigation]);
 
 const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const REACT_APP_API_BASE_URL_IMAGES = process.env.REACT_APP_API_BASE_URL_IMAGES || 'http://localhost:3001';
@@ -83,6 +82,12 @@ function Portfolio() {
             swiperRef.current.slideTo(0, 0);
         }
     }, [selectedCategory]);
+    useEffect(() => {
+        if (swiperRef.current) {
+            swiperRef.current.update();
+            swiperRef.current.slideTo(0, 0);
+        }
+    }, [swiperRef.current]);
 
     const handleMediaLoad = () => {
         setLoadedMedia((prev) => prev + 1);
@@ -163,27 +168,19 @@ function Portfolio() {
                 onSwiper={(swiper) => {
                     swiperRef.current = swiper;
                 }}
-                modules={[Grid, Navigation]}
-                grid={{
-                    rows: 3,
-                    fill: 'row',
-                }}
+                modules={[Navigation]}
                 breakpoints={{
                     375: {
                         slidesPerView: 1,
-                        grid: { rows: 1 },
                     },
                     480: {
                         slidesPerView: 1,
-                        grid: { rows: 1 },
                     },
                     768: {
                         slidesPerView: 2,
-                        grid: { rows: 1 },
                     },
                     1024: {
                         slidesPerView: 3,
-                        grid: { rows: 1 },
                     },
                 }}
                 spaceBetween={20}
@@ -198,7 +195,6 @@ function Portfolio() {
                     <SwiperSlide
                         key={index}
                         className={`${styles.slideBlock} ${selectedCategory === 'Sketching' ? styles.sketching : ''}`}
-                        style={{ gridRow: (index % 3) + 1, gridColumn: Math.floor(index / 3) + 1 }}
                         onClick={() => openModal(media)}
                     >
                         {isVideo(media.filename) ? (
@@ -231,8 +227,8 @@ function Portfolio() {
 
 
             <div className={styles.sliderControls}>
-                <button className={`swiper-button-prev-unique ${styles.left}`}>←</button>
-                <button className={`swiper-button-next-unique ${styles.rightBtn}`}>→</button>
+                <button onClick={() => swiperRef.current?.slidePrev()} className={`swiper-button-prev-unique ${styles.left}`}>←</button>
+                <button onClick={() => swiperRef.current?.slideNext()} className={`swiper-button-next-unique ${styles.rightBtn}`}>→</button>
             </div>
 
             {isModalOpen && (
