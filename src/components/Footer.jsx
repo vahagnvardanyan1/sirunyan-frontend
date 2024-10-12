@@ -26,9 +26,9 @@ function Footer({ openModal }) {
                     <p>Welcome to SIRUNYAN Jewelry & Accessories CAD Studio, where artistry meets technology to create breathtaking jewelry designs.</p>
                     <button className={styles.contactButton} onClick={openModal}>Contact Us</button>
                 </div>
-                <div className={styles.footerBottom}>
+              {/*<div className={styles.footerBottom}>
                     <a className={styles.link} target="_blank" href="https://www.facebook.com/profile.php?id=61560778410260&mibextid=JRoKGi">© 2024 FriendTech LLC</a>
-                </div>
+                </div> */}
                 <div className={styles.line}></div>
                 <div className={styles.footerContainer}>
                     <img src={logo} alt="" className={styles.logo} />
