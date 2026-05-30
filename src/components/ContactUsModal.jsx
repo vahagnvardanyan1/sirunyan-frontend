@@ -109,21 +109,25 @@ function ContactUsModal({ isOpen, onClose }) {
                     </div>
                     <div className={styles.contactDetails}>
                         <div className={styles.detailItem}>
-                            <img src={phone} alt="Phone" />
+                            <img src={phone} alt="Phone"/>
                             <span>+374 77 543 443</span>
                         </div>
                         <div className={styles.detailItem}>
-                            <img src={message} alt="Email" />
+                            <img src={message} alt="Email"/>
                             <span>hello@sirunyan.com</span>
                         </div>
                         <div className={styles.detailItem}>
-                            <img src={location} alt="Location" />
+                            <img src={location} alt="Location"/>
                             <span>75 Baghramyan Ave, 0033 Yerevan, Republic of Armenia</span>
+                        </div>
+                        <div className={styles.detailItem}>
+                            <img src={location} alt="Location"/>
+                            <span>Unit A, 841 Grange St, Glendale, CA 91202, USA</span>
                         </div>
                     </div>
                     <div className={styles.socials}>
                         <a target="_blank" href={'https://www.linkedin.com/in/tatev-sirunyan/'}>
-                            <img src={linkedIn} alt="LinkedIn" />
+                            <img src={linkedIn} alt="LinkedIn"/>
                         </a>
                     </div>
                     <img src={ring} alt="Background" className={styles.backgrounImg} />
