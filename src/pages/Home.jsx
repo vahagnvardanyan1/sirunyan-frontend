@@ -28,7 +28,7 @@ function Home() {
         <div className={styles.home}>
             <section id={styles.services}>
                 <div className={styles.servicesContent}>
-                    <p className={styles.serviceFirstTitle}>Services</p>
+                    <p className={styles.serviceFirstTitle}>Services****</p>
                     <hr className={styles.homeSectionDivider} />
                 </div>
                 <div className={styles.servicesContainer}>
