@@ -34,7 +34,7 @@ function Home() {
                 <div className={styles.servicesContainer}>
                     {services.map((service, index) => (
                         <div className={styles.serviceCategories} key={index}>
-                            <NavLink to="/service" state={{ category: service.title }}>
+                            <NavLink to="/portfolio" state={{ category: service.title }}>
                                 <div className={styles.imageContainer}>
                                     <img
                                         src={service.img}
