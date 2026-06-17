@@ -28,7 +28,8 @@ jobs:
       # 4. Build React app
       - name: Build project
         run: npm run build
-
+        env:
+          CI: false
       # 5. Deploy to server via SSH
       - name: Deploy to Lightsail
         uses: appleboy/scp-action@v0.1.7
