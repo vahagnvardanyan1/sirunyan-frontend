@@ -38,5 +38,5 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: "build/*"
-          target: "/var/www/sirunyan-client"
+          target: "/var/www/sirunyan"
           rm: true
