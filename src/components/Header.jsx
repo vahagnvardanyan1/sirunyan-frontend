@@ -114,7 +114,7 @@ function Header({ openModal }) {
                     <hr className={styles.headersectionDivider} />
                 </div>
                 {currentPage.showButton && (
-                    <a className={styles.contactUsBtn} onClick={openModal}>Contact Us</a>
+                    <button type="button" className={styles.contactUsBtn} onClick={openModal}>Contact Us</button>
                 )}
             </div>
         </header>

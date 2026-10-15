@@ -16,6 +16,15 @@ SwiperCore.use([Navigation]);
 const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const REACT_APP_API_BASE_URL_IMAGES = process.env.REACT_APP_API_BASE_URL_IMAGES || 'http://localhost:3001';
 
+const CATEGORY_MAPPING = {
+    'Sketching': 'sketching',
+    '3D modeling': '3d-modeling',
+    'Sculpting': 'sculpting',
+    'Rendering': 'rendering',
+    'Rendering & More for Websites and SMM': 'rendering-more-for-websites-and-smm',
+    'Animations': 'animations'
+};
+
 function Portfolio() {
     const categoriesRef = useRef(null);
 
@@ -38,27 +47,18 @@ function Portfolio() {
 
     const categories = ['Sketching', '3D modeling', 'Sculpting', 'Rendering', 'Rendering & More for Websites and SMM', 'Animations'];
 
-    const categoryMapping = {
-        'Sketching': 'sketching',
-        '3D modeling': '3d-modeling',
-        'Sculpting': 'sculpting',
-        'Rendering': 'rendering',
-        'Rendering & More for Websites and SMM': 'rendering-more-for-websites-and-smm',
-        'Animations': 'animations'
-    };
-
-    const fetchCategoryData = async (category) => {
-        const backendCategory = categoryMapping[category];
-        try {
-            const response = await axios.get(`${REACT_APP_API_BASE_URL}/portfolio/${backendCategory}`);
-            setMediaData(response.data);
-            setLoading(false);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    };
-
     useEffect(() => {
+        const fetchCategoryData = async (category) => {
+            const backendCategory = CATEGORY_MAPPING[category];
+            try {
+                const response = await axios.get(`${REACT_APP_API_BASE_URL}/portfolio/${backendCategory}`);
+                setMediaData(response.data);
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
         setLoading(true);
         setLoadedMedia(0);
         fetchCategoryData(selectedCategory);
@@ -87,7 +87,7 @@ function Portfolio() {
             swiperRef.current.update();
             swiperRef.current.slideTo(0, 0);
         }
-    }, [swiperRef.current]);
+    }, []);
 
     const handleMediaLoad = () => {
         setLoadedMedia((prev) => prev + 1);

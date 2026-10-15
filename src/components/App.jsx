@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 import Services from '../pages/Services';
 import Portfolio from '../pages/Portfolio';
 import ContactUsModal from './ContactUsModal';
-import styles from '../css/app.module.css';
+import '../css/app.module.css';
 import BlogDetail from "./BlogDetail";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/service" element={<Services />} />
         <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
       </Routes>
 
       <Footer openModal={openModal} />

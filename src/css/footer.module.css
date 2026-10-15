@@ -119,10 +119,19 @@
     flex-wrap: wrap;
 }
 
-.footerNav a {
+.footerNav a,
+.footerNav button {
     margin: 0 10px;
     text-decoration: none;
     color: #000000;
+}
+
+.footerNav button {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
 }
 
 .footerSocial {
@@ -241,7 +250,8 @@
         font-size: 12px;
     }
 
-    .footerNav a {
+    .footerNav a,
+    .footerNav button {
         margin: 0 5px;
     }
 
@@ -286,7 +296,8 @@
         gap: 1rem;
     }
 
-    .footerNav a {
+    .footerNav a,
+    .footerNav button {
         margin: 0 3px;
     }
 

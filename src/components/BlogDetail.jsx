@@ -51,7 +51,7 @@ const BlogDetail = () => {
             <div className={styles.blogContentPhotos}>
                 {firstTwoImages.map((img, index) => (
                     <div key={index} className={styles.imageContainer}>
-                        <img src={`${REACT_APP_API_BASE_URL_IMAGES}/${img.image}`} alt={`Blog image ${index + 1}`} />
+                        <img src={`${REACT_APP_API_BASE_URL_IMAGES}/${img.image}`} alt={img.text || `Blog illustration ${index + 1}`} />
                         <p className={styles.imageCaption}>{img.text}</p>
                     </div>
                 ))}
@@ -68,7 +68,7 @@ const BlogDetail = () => {
             <div className={styles.blogContentPhotos}>
                 {lastTwoImages.map((img, index) => (
                     <div key={index} className={styles.imageContainer}>
-                        <img src={`${REACT_APP_API_BASE_URL_IMAGES}/${img.image}`} alt={`Blog image ${index + 3}`} />
+                        <img src={`${REACT_APP_API_BASE_URL_IMAGES}/${img.image}`} alt={img.text || `Blog illustration ${index + 3}`} />
                         <p className={styles.imageCaption}>{img.text}</p>
                     </div>
                 ))}

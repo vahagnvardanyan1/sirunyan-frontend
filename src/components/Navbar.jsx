@@ -87,16 +87,16 @@ function Navbar({ isModalOpen, openModal }) {
                             <NavLink to="/about" onClick={closeMenu}>About Us</NavLink>
                         </li>
                         <li className={location.pathname === '/blog' ? styles.active : ''}>
-                            <a onClick={() => {
+                            <button type="button" className={styles.linkButton} onClick={() => {
                                 closeMenu();
                                 scrollToBlogSection();
-                            }}>Blog</a>
+                            }}>Blog</button>
                         </li>
                         <li className={location.pathname === '/contact' ? styles.active : ''}>
-                            <a onClick={() => {
+                            <button type="button" className={styles.linkButton} onClick={() => {
                                 handleOpenModal();
                                 closeMenu();
-                            }}>Contact Us</a>
+                            }}>Contact Us</button>
                         </li>
                     </ul>
                     <img
@@ -113,15 +113,15 @@ function Navbar({ isModalOpen, openModal }) {
                         <li><NavLink to="/service" onClick={closeMenu}>Services</NavLink></li>
                         <li><NavLink to="/portfolio" onClick={closeMenu}>Portfolio</NavLink></li>
                         <li><NavLink to="/about" onClick={closeMenu}>About Us</NavLink></li>
-                        <li><a onClick={() => {
+                        <li><button type="button" className={styles.linkButton} onClick={() => {
                             handleOpenModal();
                             closeMenu();
-                        }}>Contact Us</a></li>
+                        }}>Contact Us</button></li>
                         <li className={location.pathname === '/blog' ? styles.active : ''}>
-                            <a onClick={() => {
+                            <button type="button" className={styles.linkButton} onClick={() => {
                                 closeMenu();
                                 scrollToBlogSection();
-                            }}>Blog</a>
+                            }}>Blog</button>
                         </li>
                     </ul>
                 </div>

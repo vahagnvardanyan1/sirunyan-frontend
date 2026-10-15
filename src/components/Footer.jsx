@@ -36,11 +36,11 @@ function Footer({ openModal }) {
                         <Link to={'/service'}>Services</Link>
                         <Link to={'portfolio'}>Portfolio</Link>
                         <Link to={'/about'}>About Us</Link>
-                        <a href="#" onClick={(e) => { e.preventDefault(); openModal(); }}>Contact Us</a>
+                        <button type="button" onClick={openModal}>Contact Us</button>
                         <Link to={'/'} onClick={() => {scrollToBlogSection() }}>Blog</Link>
                     </nav>
                     <div className={styles.footerSocial}>
-                        <a target="_blank" href={'https://www.linkedin.com/in/tatev-sirunyan/'}>
+                        <a target="_blank" rel="noreferrer" href={'https://www.linkedin.com/in/tatev-sirunyan/'}>
                             <img src={linkedIn} alt="LinkedIn" />
                         </a>
                         {/*<a href={''}><img src={instagram} alt="Instagram" /></a>*/}

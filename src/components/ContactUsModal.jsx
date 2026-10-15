@@ -126,7 +126,7 @@ function ContactUsModal({ isOpen, onClose }) {
                         </div>
                     </div>
                     <div className={styles.socials}>
-                        <a target="_blank" href={'https://www.linkedin.com/in/tatev-sirunyan/'}>
+                        <a target="_blank" rel="noreferrer" href={'https://www.linkedin.com/in/tatev-sirunyan/'}>
                             <img src={linkedIn} alt="LinkedIn"/>
                         </a>
                     </div>

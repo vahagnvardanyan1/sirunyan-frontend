@@ -55,6 +55,8 @@
     background: transparent;
     text-align: center;
     color: #F0E7E0;
+    border: 0;
+    font: inherit;
     cursor: pointer;
 }
 

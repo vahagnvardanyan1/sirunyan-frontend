@@ -130,6 +130,16 @@ nav a {
     color: #000;
 }
 
+.linkButton {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    color: #000;
+    cursor: pointer;
+}
+
 .navList li.active {
     position: relative;
     color: #000;
@@ -252,7 +262,8 @@ nav a {
         opacity: 1;
     }
 
-    .mobileMenu ul li a {
+    .mobileMenu ul li a,
+    .mobileMenu ul li .linkButton {
         color: #FFFFFF;
         text-decoration: none;
         font-weight: 200;
