@@ -65,10 +65,10 @@ function ContactUsModal({ isOpen, onClose }) {
         };
 
         EmailJS.send(
-            'service_dtp8z3b',
-            'template_gq86ohf',
+            'service_xjfoyhg',
+            'template_2qcpl24',
             templateParams,
-            '0tjBaTjbTk7MPTU8G'
+            'y5UqTDKfCZumopV1F'
         )
             .then((response) => {
                 console.log('SUCCESS!', response.status, response.text);
